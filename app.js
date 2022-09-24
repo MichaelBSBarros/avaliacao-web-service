@@ -87,12 +87,10 @@ app.put('/api/:id', (req, res, next) => {
 
         res.status(200).json({ "Alterado com sucesso." });
         res.end();
-        return;
 
     } catch (err) {
         res.status(err.status).json({ Erro: err.message });
         res.end();
-        return;
     }
 
 })
