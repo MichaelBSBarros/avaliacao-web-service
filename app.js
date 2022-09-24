@@ -87,7 +87,6 @@ app.put('/api/:id', (req, res, next) => {
 
     } catch (err) {
         next(err)
-        res.send(err)
     }
 })
 
