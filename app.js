@@ -85,12 +85,12 @@ app.put('/api/:id', (req, res, next) => {
             attributeE: req.body.attributeE
         }
 
-        res.status(200).json({});
+        res.status(200).json({ mensagem: "sucesso na alteração" });
         res.end();
         return;
 
     } catch (err) {
-        res.status(err.status).json({ Erro: err.message });
+        res.status(err.status).json({ erro: err.message });
         res.end();
         return;
     }
