@@ -85,7 +85,7 @@ app.put('/api/:id', (req, res, next) => {
             attributeE: req.body.attributeE
         }
 
-        res.send('Dados alterados!');
+        res.send(err);
 
     } catch (err) {
         next(err)
