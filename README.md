@@ -1,5 +1,4 @@
 # avaliacao-web-service
-avaliação web service
 
 Prova 1 - Construção API - RESTFul  
 
