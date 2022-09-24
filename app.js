@@ -85,10 +85,9 @@ app.put('/api/:id', (req, res, next) => {
             attributeE: req.body.attributeE
         }
 
-        res.send(err);
-
     } catch (err) {
         next(err)
+        res.send(err)
     }
 })
 
