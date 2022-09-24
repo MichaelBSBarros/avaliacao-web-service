@@ -36,7 +36,7 @@ app.put('/api/:id', (req, res, next) => {
 
         let errors = {}
 
-        if (!req.body.id) {
+        if (!req.body.id || req.body.id == "") {
             errors.id = 'ID é um campo obrigatório!'
         } else if (isNaN(req.body.id)) {
             errors.id = 'ID inválido! Precisa ser um número!'
