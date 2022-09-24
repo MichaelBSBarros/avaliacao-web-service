@@ -88,7 +88,7 @@ app.put('/api/:id', (req, res, next) => {
         res.send('Dados alterados!');
 
     } catch (err) {
-        return res.status(err).json({ error: Error.message });
+        return res.status(err).json({});
     }
 })
 
