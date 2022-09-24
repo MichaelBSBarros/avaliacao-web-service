@@ -85,7 +85,11 @@ app.put('/api/:id', (req, res, next) => {
             attributeE: req.body.attributeE
         }
 
-        return res.status(err).json({});
+        if (err) {
+            res.status(err.status).json({ error: err.message });
+            res.end();
+            return;
+        }
 
     } catch (err) {}
 
