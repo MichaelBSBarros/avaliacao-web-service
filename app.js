@@ -1,5 +1,8 @@
 const express = require('express');
-const res = require('express/lib/response');
+const res = require('../avaliacao-web-service/node_modules/express/lib/response.js');
+const mensagens = require('../avaliacao-web-service/mensagens.js');
+const manipulacaoDeMsg = require('../avaliacao-web-service/mensagens.js');
+const staticData = require('../avaliacao-web-service/data')
 
 const app = express();
 
@@ -7,74 +10,68 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000;
 
-let staticData = [{
-    id: "1",
-    attributeA: "AAA AAAAA",
-    attributeB: "BBBB BBBB",
-    attributeC: 83.18,
-    attributeD: 53655078,
-    attributeE: true
-}, ];
 
 app.put('/api/:id', (req, res, next) => {
-    try {
 
-        let id = parseInt(req.params.id, 10) || false
+    let errors = {}
 
-        if (!id) {
-            let err = new Error('ID Inválido!')
-            err.status = 422
-            throw err
-        }
+    let id = parseInt(req.params.id, 10) || false
 
-        let index = staticData.findIndex(v => v.id == id)
-        if (index === -1) {
-            let err = new Error('ID não encontrado!')
-            err.status = 404
-            throw err
-        }
+    if (!id) {
+        res.status(442).json({ erro: manipulacaoDeMsg('invalidId') })
+    }
 
-        let errors = {}
+    let index = staticData.findIndex(v => v.id == id)
+    if (index === -1) {
+        res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
+    }
 
-        if (!req.body.id || "") {
-            errors.id = 'ID é um campo obrigatório!'
-        } else if (isNaN(req.body.id)) {
-            errors.id = 'ID inválido! Precisa ser um número!'
-        }
+    if (!req.body.id) {
+        errors["ID"] = (manipulacaoDeMsg('requiredField', 'ID'))
+    } else if (isNaN(req.body.id) || !Number.isInteger(req.body.id)) {
+        errors["ID"] = (manipulacaoDeMsg('isInt', "ID"))
+    } else if (req.body.id < 0) {
+        errors["ID"] = (manipulacaoDeMsg('positiveNumber', 'ID'))
+    }
 
-        if (!req.body.attributeA) {
-            errors.attributeA = 'O atributo A é um campo obrigatório!'
-        } else if (req.body.attributeA.length <= 1) {
-            errors.attributeA = 'O Atributo A está muito CURTO! Precisa ter no mínimo 2 caracteres!'
-        } else if (req.body.attributeA.length > 256) {
-            errors.attributeA = 'O Atributo A está muito LONGO! Precisa ter no máximo 256 caracteres!'
-        }
+    if (!req.body.attributeA) {
+        errors["attributeA"] = (manipulacaoDeMsg('requiredField', 'attributeA'))
+    } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
+        errors["attributeA"] = (manipulacaoDeMsg('onlyLetters', 'attributeA'))
+    } else if (req.body.attributeA.length <= 1) {
+        errors["attributeA"] = (manipulacaoDeMsg('lengthMoreThan', 'attributeA', 2))
+    } else if (req.body.attributeA.length > 100) {
+        errors["attributeA"] = (manipulacaoDeMsg('lengthLessThan', 'attributeA', null, 100))
+    }
 
-        if (!req.body.attributeB) {
-            errors.attributeB = 'O atributo B é um campo obrigatório!'
-        } else if (req.body.attributeB.length <= 1) {
-            errors.attributeB = 'O Atributo B está muito CURTO! Precisa ter no mínimo 2 caracteres!'
-        } else if (req.body.attributeB.length > 256) {
-            errors.attributeB = 'O Atributo B está muito LONGO! Precisa ter no máximo 256 caracteres!'
-        }
+    if (!req.body.attributeB) {
+        errors["attributeB"] = (manipulacaoDeMsg('requiredField', 'attributeB'))
+    } else if (req.body.attributeB.length <= 8) {
+        errors["attributeB"] = (manipulacaoDeMsg('lengthMoreThan', 'attributeB', 8))
+    } else if (req.body.attributeB.length > 40) {
+        errors["attributeB"] = (manipulacaoDeMsg('lengthLessThan', 'attributeB', null, 40))
+    }
 
-        if (!req.body.attributeC) {
-            errors.id = 'O atributo C é um campo obrigatório!'
-        } else if (isNaN(req.body.attributeC)) {
-            errors.id = 'O atributo C está inválido! Precisa ser um número!'
-        }
+    if (!req.body.attributeC) {
+        errors["attributeC"] = (manipulacaoDeMsg('requiredField', 'attributeC'))
+    } else if (isNaN(req.body.attributeC)) {
+        errors["attributeC"] = (manipulacaoDeMsg('isNumber', 'attributeC'))
+    }
 
-        if (!req.body.attributeD) {
-            errors.id = 'O atributo D é um campo obrigatório!'
-        } else if (isNaN(req.body.attributeD)) {
-            errors.id = 'O atributo D está inválido! Precisa ser um número!'
-        }
+    if (!req.body.attributeD) {
+        errors["attributeD"] = (manipulacaoDeMsg('requiredField', 'attributeD'))
+    } else if (isNaN(req.body.attributeD) || !Number.isInteger(req.body.attributeD)) {
+        errors["attributeD"] = (manipulacaoDeMsg('isInt', 'attributeD'))
+    } else if (req.body.attributeD < 0) {
+        errors["attributeD"] = (manipulacaoDeMsg('positiveNumber', 'attributeD'))
+    }
 
-        if (!req.body.attributeE) {
-            errors.attributeE = 'O atributo E é um campo obrigatório'
-        } else if (typeof req.body.attributeE != "boolean") {
-            errors.attributeE = 'O atributo E está inválido! Precisa ser true ou false!'
-        }
+    if (!req.body.attributeE) {
+        errors["attributeE"] = (manipulacaoDeMsg('requiredField', 'attributeE'))
+    } else if (typeof req.body.attributeE != "boolean") {
+        errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeD'))
+    }
+    if (Object.keys(errors).length === 0) {
 
         staticData[index] = {
             id: req.body.id,
@@ -84,17 +81,15 @@ app.put('/api/:id', (req, res, next) => {
             attributeD: req.body.attributeD,
             attributeE: req.body.attributeE
         }
-
-        res.status(200).json({ mensagem: "sucesso na alteração" });
+        res.errors
+        res.status(200).json({
+            mensagem: manipulacaoDeMsg('putSuccess')
+        });
         res.end();
         return;
-
-    } catch (err) {
-        res.status(err.status).json({ erro: err.message });
-        res.end();
-        return;
+    } else {
+        res.status(400).json(errors)
     }
-
 })
 
 app.listen(port, () => console.log(`Servidor iniciado em http://localhost:${port}`));
