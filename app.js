@@ -1,7 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
-const manipulacaoDeMsg = require('../avaliacao-web-service/mensagens');
-const staticData = require('../avaliacao-web-service/data')
+const manipulacaoDeMsg = require('../avaliacao-web-service/mensagens.js');
+const staticData = require('../avaliacao-web-service/data.js')
 
 const app = express();
 
