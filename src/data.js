@@ -1,5 +1,5 @@
 let staticData = [{
-        id: "1",
+        id: "11b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
