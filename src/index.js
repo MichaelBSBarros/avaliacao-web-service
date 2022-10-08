@@ -3,7 +3,7 @@ const res = require('express/lib/response');
 const getMessage = require('./messagestorage');
 const staticData = require('./data');
 const { v4: uuidv4 } = require('uuid');
-import attributeChecker from './attributechecker';
+import { attributeChecker } from './attributechecker';
 
 const app = express();
 
