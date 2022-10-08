@@ -31,32 +31,33 @@ app.get('/api/:id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
+    attributeChecker(req)
 
-    staticData.push({
-        id: uuidv4(),
-        attributeA,
-        attributeB,
-        attributeC,
-        attributeD,
-        attributeE
-    });
     res.send('ok');
+
+    if (Object.keys(errors).length === 0) {
+
+        staticData.push({
+            id: uuidv4(),
+            attributeA: req.body.attributeA,
+            attributeB: req.body.attributeB,
+            attributeC: req.body.attributeC,
+            attributeD: req.body.attributeD,
+            attributeE: req.body.attributeE
+        });
+
+        res.errors
+        res.status(200).json({
+            mensagem: manipulacaoDeMsg('postSuccess')
+        });
+        res.end();
+        return;
+    } else {
+        res.status(400).json(errors)
+    }
 });
 
-app.put('/api/:id', (req, res, next) => {
-
-    let id = parseInt(req.params.id, 10) || false
-
-    if (!id) {
-        res.status(442).json({ erro: manipulacaoDeMsg('invalidId') })
-    }
-
-    let index = staticData.findIndex(v => v.id == id)
-    if (index === -1) {
-        res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
-    }
-
+function attributeChecker(req) {
     if (!req.body.id) {
         errors["ID"] = (manipulacaoDeMsg('requiredField', 'ID'))
     } else if (isNaN(req.body.id) || !Number.isInteger(req.body.id)) {
@@ -102,6 +103,23 @@ app.put('/api/:id', (req, res, next) => {
     } else if (typeof req.body.attributeE != "boolean") {
         errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeD'))
     }
+}
+
+app.put('/api/:id', (req, res, next) => {
+
+    let id = parseInt(req.params.id, 10) || false
+
+    if (!id) {
+        res.status(442).json({ erro: manipulacaoDeMsg('invalidId') })
+    }
+
+    let index = staticData.findIndex(v => v.id == id)
+    if (index === -1) {
+        res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
+    }
+
+    attributeChecker(req)
+
     if (Object.keys(errors).length === 0) {
 
         staticData[index] = {

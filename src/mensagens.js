@@ -37,6 +37,8 @@
               break;
           case 'putSuccess':
               message = 'alteração realizada com sucesso'
+          case 'postSuccess':
+              message = 'inclusão realizada com sucesso'
           default:
               "erro nao definido"
       }
