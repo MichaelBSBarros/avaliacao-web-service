@@ -1,4 +1,4 @@
-export function attributeChecker(req) {
+export default function attributeChecker(req) {
 
     if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
