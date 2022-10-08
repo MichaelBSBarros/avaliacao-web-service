@@ -27,6 +27,21 @@ app.get('/api/:id', (req, res) => {
     res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
 })
 
+app.post('/api', (req, res) => {
+    const data = req.body
+
+    console.log(data);
+    movies.push({
+        "id": uuidv4,
+        "attributeA": req.params.attributeA,
+        "attributeB": req.params.attributeB,
+        "attributeC": req.params.attributeC,
+        "attributeD": req.params.attributeD,
+        "attributeE": req.params.attributeE
+    });
+    res.send('ok');
+});
+
 app.put('/api/:id', (req, res, next) => {
 
     let errors = {}
