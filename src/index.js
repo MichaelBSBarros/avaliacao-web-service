@@ -89,7 +89,7 @@ function attributeChecker(req) {
         errors["attributeD"] = (manipulacaoDeMsg('positiveNumber', 'attributeD'))
     }
 
-    if (!req.body.attributeE) {
+    if (req.body.attributeE == "") {
         errors["attributeE"] = (manipulacaoDeMsg('requiredField', 'attributeE'))
     } else if (typeof req.body.attributeE != "boolean") {
         errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeE'))
