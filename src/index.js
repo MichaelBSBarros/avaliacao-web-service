@@ -24,20 +24,20 @@ app.get('/api/:id', (req, res) => {
             return
         }
     }
-    res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
-})
+    res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') });
+});
 
 app.post('/api', (req, res) => {
-    const data = req.body
+    const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
 
     console.log(data);
-    movies.push({
-        "id": uuidv4,
-        "attributeA": req.params.attributeA,
-        "attributeB": req.params.attributeB,
-        "attributeC": req.params.attributeC,
-        "attributeD": req.params.attributeD,
-        "attributeE": req.params.attributeE
+    staticData.push({
+        id: uuidv4,
+        attributeA,
+        attributeB,
+        attributeC,
+        attributeD,
+        attributeE
     });
     res.send('ok');
 });
