@@ -89,4 +89,4 @@ app.put('/api/:id', (req, res, next) => {
     }
 })
 
-app.listen(port, () => console.log(`Servidor iniciado em http://localhost:${port}`));
+app.listen(port);

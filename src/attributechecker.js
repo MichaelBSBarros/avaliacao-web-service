@@ -1,4 +1,4 @@
-function attributeChecker(req) {
+exports.attributeChecker = function(req) {
     let errors = {}
 
     if (!req.body.attributeA || req.body.attributeA === null) {
@@ -40,4 +40,3 @@ function attributeChecker(req) {
     }
     return errors;
 }
-module.exports = attributeChecker
