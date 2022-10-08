@@ -28,18 +28,19 @@ app.get('/api/:id', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
-    const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
-
-    console.log(data);
-    staticData.push({
-        id: uuidv4,
-        attributeA,
-        attributeB,
-        attributeC,
-        attributeD,
-        attributeE
-    });
-    res.send('ok');
+    console.log(req.body)
+        //const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
+        //
+        //console.log(data);
+        //staticData.push({
+        //    id: uuidv4,
+        //    attributeA,
+        //    attributeB,
+        //    attributeC,
+        //    attributeD,
+        //    attributeE
+        //});
+        //res.send('ok');
 });
 
 app.put('/api/:id', (req, res, next) => {
