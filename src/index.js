@@ -34,7 +34,7 @@ app.post('/api', (req, res) => {
     //
     //console.log(data);
     staticData.push({
-        id: uuidv4,
+        id: uuidv4(),
         attributeA,
         attributeB,
         attributeC,
