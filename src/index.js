@@ -16,9 +16,9 @@ app.get("/api", (req, res) => {
 app.get('/api/:id', (req, res) => {
     const id = req.params.id
 
-    for (let staticData of staticData) {
-        if (staticData.id === id) {
-            res.json(staticData)
+    for (let data of staticData) {
+        if (data.id === id) {
+            res.json(data)
             return
         }
     }
