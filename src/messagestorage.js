@@ -39,6 +39,8 @@
               message = 'alteração realizada com sucesso'
           case 'postSuccess':
               message = 'inclusão realizada com sucesso'
+          case 'delSuccess':
+              message = 'exclusão realizada com sucesso'
           default:
               "erro nao definido"
       }

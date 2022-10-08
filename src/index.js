@@ -55,7 +55,7 @@ app.post('/api', (req, res) => {
 
 app.put('/api/:id', (req, res, next) => {
 
-    let id = parseInt(req.params.id, 10) || false
+    let id = req.params.id || false
 
     if (!id) {
         res.status(442).json({ erro: getMessage('invalidId') })
@@ -88,5 +88,23 @@ app.put('/api/:id', (req, res, next) => {
         res.status(400).json(errors)
     }
 })
+
+app.delete('/api/:id', (req, res) => {
+
+    let id = req.params.id || false
+    let index = staticData.findIndex(v => v.id == id)
+
+    if (!id) {
+        res.status(442).json({ erro: getMessage('invalidId') })
+    } else if (index === -1) {
+        res.status(404).json({ erro: getMessage('notFoundId') })
+    } else {
+        res.status(200).json({
+            mensagem: getMessage('delSuccess')
+        });
+        res.end();
+        return;
+    }
+});
 
 app.listen(port, () => console.log(`Servidor iniciado em http://localhost:${port}`));
