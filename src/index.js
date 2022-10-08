@@ -2,6 +2,8 @@ const express = require('express');
 const res = require('express/lib/response');
 const manipulacaoDeMsg = require('./mensagens');
 const staticData = require('./data')
+const { v4: uuidv4 } = require("uuid");
+module.exports = uuidv4
 
 const app = express();
 

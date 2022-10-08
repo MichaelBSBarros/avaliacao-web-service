@@ -1,5 +1,7 @@
+const { v4: uuidv4 } = require("uuid");
+
 let staticData = [{
-        id: "11b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -7,7 +9,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "2",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -15,7 +17,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "3",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -23,7 +25,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "4",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -31,7 +33,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "5",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -39,7 +41,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "6",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -47,7 +49,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "7",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -55,7 +57,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "8",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -63,7 +65,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "9",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
@@ -71,7 +73,7 @@ let staticData = [{
         attributeE: true
     },
     {
-        id: "10",
+        id: uuidv4(),
         attributeA: "AAA AAAAA",
         attributeB: "BBBB BBBB",
         attributeC: 83.18,
