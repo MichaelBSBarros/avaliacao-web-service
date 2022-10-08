@@ -13,6 +13,18 @@ app.get("/api", (req, res) => {
     res.json(staticData);
 });
 
+app.get('/api/:id', (req, res) => {
+    const id = req.params.id
+
+    for (let staticData of staticData) {
+        if (staticData.id === id) {
+            res.json(staticData)
+            return
+        }
+    }
+    res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
+})
+
 app.put('/api/:id', (req, res, next) => {
 
     let errors = {}
