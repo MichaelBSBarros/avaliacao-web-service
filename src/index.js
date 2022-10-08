@@ -7,6 +7,8 @@ module.exports = uuidv4
 
 const app = express();
 
+var errors = {}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000;
@@ -28,11 +30,9 @@ app.get('/api/:id', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
-    //res.send(req.body)
+
     const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
-    //res.send(attributeA)
-    //
-    //console.log(data);
+
     staticData.push({
         id: uuidv4(),
         attributeA,
@@ -45,8 +45,6 @@ app.post('/api', (req, res) => {
 });
 
 app.put('/api/:id', (req, res, next) => {
-
-    let errors = {}
 
     let id = parseInt(req.params.id, 10) || false
 
