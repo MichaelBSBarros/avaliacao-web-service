@@ -27,35 +27,8 @@ app.get('/api/:id', (req, res) => {
     res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') });
 });
 
-app.post('/api', (req, res) => {
-
-
-    let errors = {}
-    errors = attributeChecker(req)
-
-    if (Object.keys(errors).length === 0) {
-
-        staticData.push({
-            id: uuidv4(),
-            attributeA: req.body.attributeA,
-            attributeB: req.body.attributeB,
-            attributeC: req.body.attributeC,
-            attributeD: req.body.attributeD,
-            attributeE: req.body.attributeE
-        });
-
-        res.errors
-        res.status(200).json({
-            mensagem: manipulacaoDeMsg('postSuccess')
-        });
-        res.end();
-        return;
-    } else {
-        res.status(400).json(errors)
-    }
-});
-
 function attributeChecker(req) {
+    let errors = {}
 
     if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (manipulacaoDeMsg('requiredField', 'attributeA'))
@@ -96,6 +69,32 @@ function attributeChecker(req) {
     }
     return errors;
 }
+
+app.post('/api', (req, res) => {
+
+    errors = attributeChecker(req)
+
+    if (Object.keys(errors).length === 0) {
+
+        staticData.push({
+            id: uuidv4(),
+            attributeA: req.body.attributeA,
+            attributeB: req.body.attributeB,
+            attributeC: req.body.attributeC,
+            attributeD: req.body.attributeD,
+            attributeE: req.body.attributeE
+        });
+
+        res.errors
+        res.status(200).json({
+            mensagem: manipulacaoDeMsg('postSuccess')
+        });
+        res.end();
+        return;
+    } else {
+        res.status(400).json(errors)
+    }
+});
 
 app.put('/api/:id', (req, res, next) => {
 
