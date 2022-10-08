@@ -90,6 +90,7 @@ function attributeChecker(req) {
     }
 
     if (req.body.attributeE == "") {
+        res.send(req.body.attributeE)
         errors["attributeE"] = (manipulacaoDeMsg('requiredField', 'attributeE'))
     } else if (typeof req.body.attributeE != "boolean") {
         errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeE'))
