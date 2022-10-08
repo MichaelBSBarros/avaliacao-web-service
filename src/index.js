@@ -30,18 +30,18 @@ app.get('/api/:id', (req, res) => {
 app.post('/api', (req, res) => {
     //res.send(req.body)
     const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
-    res.send(attributeA)
-        //
-        //console.log(data);
-        //staticData.push({
-        //    id: uuidv4,
-        //    attributeA,
-        //    attributeB,
-        //    attributeC,
-        //    attributeD,
-        //    attributeE
-        //});
-        //res.send('ok');
+    //res.send(attributeA)
+    //
+    //console.log(data);
+    staticData.push({
+        id: uuidv4,
+        attributeA,
+        attributeB,
+        attributeC,
+        attributeD,
+        attributeE
+    });
+    //res.send('ok');
 });
 
 app.put('/api/:id', (req, res, next) => {
