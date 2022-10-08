@@ -1,5 +1,5 @@
-class Checker {
-    attributeChecker(req) {
+export default class Checker {
+    static attributeChecker(req) {
 
         if (!req.body.attributeA || req.body.attributeA === null) {
             errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
@@ -41,4 +41,3 @@ class Checker {
         return errors;
     }
 }
-module.exports = Checker;
