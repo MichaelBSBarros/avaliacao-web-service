@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express.cjs');
 const res = require('express/lib/response');
 const getMessage = require('./messagestorage');
 const staticData = require('./data');
