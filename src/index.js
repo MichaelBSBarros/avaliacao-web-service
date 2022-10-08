@@ -33,8 +33,6 @@ app.post('/api', (req, res) => {
 
     attributeChecker(req)
 
-    res.send('ok');
-
     if (Object.keys(errors).length === 0) {
 
         staticData.push({
