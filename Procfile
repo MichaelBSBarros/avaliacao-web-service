@@ -1,1 +1,2 @@
-web: node src/index.js src/attributechecker.js
+web: node src/index.js 
+web: node src/attributechecker.js
