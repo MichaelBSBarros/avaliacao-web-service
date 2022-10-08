@@ -1,5 +1,3 @@
-const { v4: uuidv4 } = require("uuid");
-
 let staticData = [{
         "id": "e190e822-b23c-4119-ab44-0ca983ea427b",
         "attributeA": "AAA AAAAA",

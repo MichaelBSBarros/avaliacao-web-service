@@ -1,6 +1,6 @@
   let message;
 
-  function manipulacaoDeMsg(codMsg, campo = null, minLen = null, maxLen = null) {
+  function getMessage(codMsg, campo = null, minLen = null, maxLen = null) {
       switch (codMsg) {
           case 'invalidId':
               message = 'id inválido'
@@ -44,4 +44,4 @@
       }
       return message;
   }
-  module.exports = manipulacaoDeMsg
+  module.exports = getMessage

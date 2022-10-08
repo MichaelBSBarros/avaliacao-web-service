@@ -1,9 +1,9 @@
 const express = require('express');
 const res = require('express/lib/response');
-const manipulacaoDeMsg = require('./mensagens');
+const getMessage = require('./messagestorage');
 const staticData = require('./data')
+const attributeChecker = require('./attributechecker')
 const { v4: uuidv4 } = require("uuid");
-module.exports = uuidv4
 
 const app = express();
 
@@ -24,51 +24,8 @@ app.get('/api/:id', (req, res) => {
             return
         }
     }
-    res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') });
+    res.status(404).json({ erro: getMessage('notFoundId') });
 });
-
-function attributeChecker(req) {
-    let errors = {}
-
-    if (!req.body.attributeA || req.body.attributeA === null) {
-        errors["attributeA"] = (manipulacaoDeMsg('requiredField', 'attributeA'))
-    } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
-        errors["attributeA"] = (manipulacaoDeMsg('onlyLetters', 'attributeA'))
-    } else if (req.body.attributeA.length <= 1) {
-        errors["attributeA"] = (manipulacaoDeMsg('lengthMoreThan', 'attributeA', 2))
-    } else if (req.body.attributeA.length > 100) {
-        errors["attributeA"] = (manipulacaoDeMsg('lengthLessThan', 'attributeA', null, 100))
-    }
-
-    if (!req.body.attributeB || req.body.attributeB === null) {
-        errors["attributeB"] = (manipulacaoDeMsg('requiredField', 'attributeB'))
-    } else if (req.body.attributeB.length <= 8) {
-        errors["attributeB"] = (manipulacaoDeMsg('lengthMoreThan', 'attributeB', 8))
-    } else if (req.body.attributeB.length > 40) {
-        errors["attributeB"] = (manipulacaoDeMsg('lengthLessThan', 'attributeB', null, 40))
-    }
-
-    if (!req.body.attributeC || req.body.attributeC === null) {
-        errors["attributeC"] = (manipulacaoDeMsg('requiredField', 'attributeC'))
-    } else if (isNaN(req.body.attributeC)) {
-        errors["attributeC"] = (manipulacaoDeMsg('isNumber', 'attributeC'))
-    }
-
-    if (!req.body.attributeD || req.body.attributeD === null) {
-        errors["attributeD"] = (manipulacaoDeMsg('requiredField', 'attributeD'))
-    } else if (isNaN(req.body.attributeD) || !Number.isInteger(req.body.attributeD)) {
-        errors["attributeD"] = (manipulacaoDeMsg('isInt', 'attributeD'))
-    } else if (req.body.attributeD < 0) {
-        errors["attributeD"] = (manipulacaoDeMsg('positiveNumber', 'attributeD'))
-    }
-
-    if (req.body.attributeE === "" || req.body.attributeE === null) {
-        errors["attributeE"] = (manipulacaoDeMsg('requiredField', 'attributeE'))
-    } else if (typeof req.body.attributeE != "boolean") {
-        errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeE'))
-    }
-    return errors;
-}
 
 app.post('/api', (req, res) => {
 
@@ -87,7 +44,7 @@ app.post('/api', (req, res) => {
 
         res.errors
         res.status(200).json({
-            mensagem: manipulacaoDeMsg('postSuccess')
+            mensagem: getMessage('postSuccess')
         });
         res.end();
         return;
@@ -101,15 +58,15 @@ app.put('/api/:id', (req, res, next) => {
     let id = parseInt(req.params.id, 10) || false
 
     if (!id) {
-        res.status(442).json({ erro: manipulacaoDeMsg('invalidId') })
+        res.status(442).json({ erro: getMessage('invalidId') })
     }
 
     let index = staticData.findIndex(v => v.id == id)
     if (index === -1) {
-        res.status(404).json({ erro: manipulacaoDeMsg('notFoundId') })
+        res.status(404).json({ erro: getMessage('notFoundId') })
     }
 
-    attributeChecker(req)
+    errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -123,7 +80,7 @@ app.put('/api/:id', (req, res, next) => {
         }
         res.errors
         res.status(200).json({
-            mensagem: manipulacaoDeMsg('putSuccess')
+            mensagem: getMessage('putSuccess')
         });
         res.end();
         return;
