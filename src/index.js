@@ -7,7 +7,7 @@ module.exports = uuidv4
 
 const app = express();
 
-var errors = {}
+const errors = {}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
