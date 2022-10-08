@@ -41,7 +41,7 @@ app.post('/api', (req, res) => {
         attributeD,
         attributeE
     });
-    //res.send('ok');
+    res.send('ok');
 });
 
 app.put('/api/:id', (req, res, next) => {
