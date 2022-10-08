@@ -9,6 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000;
 
+app.get("/api", (req, res) => {
+    res.json(staticData);
+});
+
 app.put('/api/:id', (req, res, next) => {
 
     let errors = {}
