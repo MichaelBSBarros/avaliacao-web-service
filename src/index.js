@@ -7,8 +7,6 @@ module.exports = uuidv4
 
 const app = express();
 
-const errors = {}
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000;
@@ -31,7 +29,9 @@ app.get('/api/:id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    attributeChecker(req)
+
+    let errors = {}
+    errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -57,7 +57,7 @@ app.post('/api', (req, res) => {
 
 function attributeChecker(req) {
 
-    if (!req.body.attributeA) {
+    if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (manipulacaoDeMsg('requiredField', 'attributeA'))
     } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
         errors["attributeA"] = (manipulacaoDeMsg('onlyLetters', 'attributeA'))
@@ -67,7 +67,7 @@ function attributeChecker(req) {
         errors["attributeA"] = (manipulacaoDeMsg('lengthLessThan', 'attributeA', null, 100))
     }
 
-    if (!req.body.attributeB) {
+    if (!req.body.attributeB || req.body.attributeB === null) {
         errors["attributeB"] = (manipulacaoDeMsg('requiredField', 'attributeB'))
     } else if (req.body.attributeB.length <= 8) {
         errors["attributeB"] = (manipulacaoDeMsg('lengthMoreThan', 'attributeB', 8))
@@ -75,13 +75,13 @@ function attributeChecker(req) {
         errors["attributeB"] = (manipulacaoDeMsg('lengthLessThan', 'attributeB', null, 40))
     }
 
-    if (!req.body.attributeC) {
+    if (!req.body.attributeC || req.body.attributeC === null) {
         errors["attributeC"] = (manipulacaoDeMsg('requiredField', 'attributeC'))
     } else if (isNaN(req.body.attributeC)) {
         errors["attributeC"] = (manipulacaoDeMsg('isNumber', 'attributeC'))
     }
 
-    if (!req.body.attributeD) {
+    if (!req.body.attributeD || req.body.attributeD === null) {
         errors["attributeD"] = (manipulacaoDeMsg('requiredField', 'attributeD'))
     } else if (isNaN(req.body.attributeD) || !Number.isInteger(req.body.attributeD)) {
         errors["attributeD"] = (manipulacaoDeMsg('isInt', 'attributeD'))
@@ -94,6 +94,7 @@ function attributeChecker(req) {
     } else if (typeof req.body.attributeE != "boolean") {
         errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeE'))
     }
+    return errors;
 }
 
 app.put('/api/:id', (req, res, next) => {
