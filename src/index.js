@@ -28,7 +28,7 @@ app.get('/api/:id', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
-    console.log(req.body)
+    res.send(req.body)
         //const { attributeA, attributeB, attributeC, attributeD, attributeE } = req.body;
         //
         //console.log(data);
