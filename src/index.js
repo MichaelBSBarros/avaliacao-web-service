@@ -103,7 +103,8 @@ app.delete('/api/:id', (req, res) => {
             mensagem: getMessage('delSuccess')
         });
         res.end();
-        return false;
+        staticData.deleteOne({ _id: id })
+        return;
     }
 });
 
