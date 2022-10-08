@@ -56,13 +56,6 @@ app.post('/api', (req, res) => {
 });
 
 function attributeChecker(req) {
-    if (!req.body.id) {
-        errors["ID"] = (manipulacaoDeMsg('requiredField', 'ID'))
-    } else if (isNaN(req.body.id) || !Number.isInteger(req.body.id)) {
-        errors["ID"] = (manipulacaoDeMsg('isInt', "ID"))
-    } else if (req.body.id < 0) {
-        errors["ID"] = (manipulacaoDeMsg('positiveNumber', 'ID'))
-    }
 
     if (!req.body.attributeA) {
         errors["attributeA"] = (manipulacaoDeMsg('requiredField', 'attributeA'))
@@ -99,7 +92,7 @@ function attributeChecker(req) {
     if (!req.body.attributeE) {
         errors["attributeE"] = (manipulacaoDeMsg('requiredField', 'attributeE'))
     } else if (typeof req.body.attributeE != "boolean") {
-        errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeD'))
+        errors["attributeE"] = (manipulacaoDeMsg('isBoolean', 'attributeE'))
     }
 }
 
