@@ -1,5 +1,6 @@
 import getMessage from './messagestorage';
 import staticData from './data';
+import messagestorage from './messagestorage.mjs';
 
 export default class Params {
     static checkerId(req) {
@@ -8,13 +9,13 @@ export default class Params {
 
         if (!_id) {
             res.status(442).json({
-                erro: getMessage('invalidId')
+                erro: messagestorage.getMessage('invalidId')
             })
         }
 
         if (index === -1) {
             res.status(404).json({
-                erro: getMessage('notFoundId')
+                erro: messagestorage.getMessage('notFoundId')
             })
         }
     }

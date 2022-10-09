@@ -56,7 +56,7 @@ app.post('/api', (req, res) => {
 
 app.put('/api/:_id', (req, res, next) => {
 
-    Params.
+    Params.checkerId(req)
 
     errors = attributeChecker(req)
 
