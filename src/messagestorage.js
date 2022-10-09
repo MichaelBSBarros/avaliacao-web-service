@@ -1,6 +1,7 @@
-  let message;
-
   function getMessage(codMsg, campo = null, minLen = null, maxLen = null) {
+
+      let message;
+
       switch (codMsg) {
           case 'invalidId':
               message = 'id inválido'

@@ -1,8 +1,8 @@
 const getMessage = require('./messagestorage');
 
-let errors = {}
-
 function attributeChecker(req) {
+
+    let errors = {}
 
     if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
@@ -16,7 +16,7 @@ function attributeChecker(req) {
 
     if (!req.body.attributeB || req.body.attributeB === null) {
         errors["attributeB"] = (getMessage('requiredField', 'attributeB'))
-    } else if (req.body.attributeB.length <= 8) {
+    } else if (req.body.attributeB.length < 8) {
         errors["attributeB"] = (getMessage('lengthMoreThan', 'attributeB', 8))
     } else if (req.body.attributeB.length > 40) {
         errors["attributeB"] = (getMessage('lengthLessThan', 'attributeB', null, 40))
