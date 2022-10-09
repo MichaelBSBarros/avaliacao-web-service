@@ -111,7 +111,7 @@ app.patch('/api/:id', (req, res, next) => {
         if (Object.keys(errors).length === 0) {
 
             staticData[index] = {
-                id: req.body.id,
+                id: staticData[index].id,
                 attributeA: req.body.attributeA,
                 attributeB: req.body.attributeB,
                 attributeC: req.body.attributeC,
