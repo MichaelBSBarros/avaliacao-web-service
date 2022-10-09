@@ -1,3 +1,5 @@
+const getMessage = require('./messagestorage');
+
 let errors = {}
 
 function attributeChecker(req) {
