@@ -13,13 +13,13 @@ export default class Params {
         if (!_id) {
             id.status = 442
             id.msg = 'invalidId'
-        }
-
-        if (index === -1) {
+            return id
+        } else if (index === -1) {
             id.status = 404
             id.msg = 'notFoundId'
+            return id
+        } else {
+            return false
         }
-
-        return id.status > 0 ? id : false
     }
 }
