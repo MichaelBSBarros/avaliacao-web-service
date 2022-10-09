@@ -39,4 +39,4 @@ function attributeChecker(req) {
     }
     return errors;
 }
-export { attributeChecker }
+module.exports = attributeChecker
