@@ -89,6 +89,16 @@ app.put('/api/:id', (req, res, next) => {
     }
 })
 
+exports.patch = (req, res, next) => {
+    let id = req.params.id;
+    let body = req.body;
+
+    for (let b in req.body) {
+        console.log(b);
+        console.log(req.body[b]);
+    }
+}
+
 app.delete('/api/:id', (req, res) => {
 
     let id = req.params.id || false
