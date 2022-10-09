@@ -1,10 +1,10 @@
 const express = require('express');
 const res = require('express/lib/response');
-const getMessage = require('./messagestorage');
 const staticData = require('./data');
 const { v4: uuidv4 } = require('uuid');
 const attributeChecker = require('./attributechecker');
 import Params from './paramschecker.mjs';
+import messagestorage from './messagestorage.mjs';
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.get('/api/:_id', (req, res) => {
             return
         }
     }
-    res.status(404).json({ erro: getMessage('notFoundId') });
+    res.status(404).json({ erro: messagestorage.getMessage('notFoundId') });
 });
 
 app.post('/api', (req, res) => {
@@ -45,7 +45,7 @@ app.post('/api', (req, res) => {
 
         res.errors
         res.status(200).json({
-            mensagem: getMessage('postSuccess')
+            mensagem: messagestorage.getMessage('postSuccess')
         });
         res.end();
         return;
@@ -72,7 +72,7 @@ app.put('/api/:_id', (req, res, next) => {
         }
         res.errors
         res.status(201).json({
-            mensagem: getMessage('alterationSuccess')
+            mensagem: messagestorage.getMessage('alterationSuccess')
         });
         res.end();
         return;
@@ -87,9 +87,9 @@ app.patch('/api/:_id', (req, res, next) => {
     let index = staticData.findIndex(v => v._id == _id)
 
     if (!_id) {
-        res.status(442).json({ erro: getMessage('invalidId') })
+        res.status(442).json({ erro: messagestorage.getMessage('invalidId') })
     } else if (index === -1) {
-        res.status(404).json({ erro: getMessage('notFoundId') })
+        res.status(404).json({ erro: messagestorage.getMessage('notFoundId') })
     } else {
 
         if (!req.body.attributeA) { req.body.attributeA = staticData[index].attributeA }
@@ -112,7 +112,7 @@ app.patch('/api/:_id', (req, res, next) => {
             }
             res.errors
             res.status(201).json({
-                mensagem: getMessage('alterationSuccess')
+                mensagem: messagestorage.getMessage('alterationSuccess')
             });
             res.end();
             return;
@@ -128,12 +128,12 @@ app.delete('/api/:_id', (req, res) => {
     let index = staticData.findIndex(v => v._id == _id)
 
     if (!_id) {
-        res.status(442).json({ erro: getMessage('invalidId') })
+        res.status(442).json({ erro: messagestorage.getMessage('invalidId') })
     } else if (index === -1) {
-        res.status(404).json({ erro: getMessage('notFoundId') })
+        res.status(404).json({ erro: messagestorage.getMessage('notFoundId') })
     } else {
         res.status(200).json({
-            mensagem: getMessage('delSuccess')
+            mensagem: messagestorage.getMessage('delSuccess')
         });
         staticData.splice(index)
     }

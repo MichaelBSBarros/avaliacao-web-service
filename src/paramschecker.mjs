@@ -1,4 +1,3 @@
-import getMessage from './messagestorage';
 import staticData from './data';
 import messagestorage from './messagestorage.mjs';
 
