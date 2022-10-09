@@ -99,13 +99,26 @@ app.patch('/api/:id', (req, res, next) => {
     } else if (index === -1) {
         res.status(404).json({ erro: getMessage('notFoundId') })
     } else {
-        staticData[index] = req.body
+
+        !req.body.attributeA ? attributeA = staticData[index].attributeA : attributeA = req.body.attributeA;
+        !req.body.attributeB ? attributeB = staticData[index].attributeB : attributeB = req.body.attributeB;
+        !req.body.attributeC ? attributeC = staticData[index].attributeC : attributeC = req.body.attributeC;
+        !req.body.attributeD ? attributeD = staticData[index].attributeD : attributeD = req.body.attributeD;
+        !req.body.attributeE ? attributeE = staticData[index].attributeE : attributeE = req.body.attributeE;
+
+        staticData[index] = {
+            id: staticData[index].id,
+            attributeA: req.body.attributeA,
+            attributeB: req.body.attributeB,
+            attributeC: req.body.attributeC,
+            attributeD: req.body.attributeD,
+            attributeE: req.body.attributeE
+        };
+
         res.status(201).json({
             mensagem: getMessage('putSuccess')
         });
     }
-
-
 })
 
 app.delete('/api/:id', (req, res) => {
