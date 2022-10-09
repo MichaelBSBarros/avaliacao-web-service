@@ -108,18 +108,25 @@ app.patch('/api/:id', (req, res, next) => {
 
         errors = attributeChecker(req)
 
-        staticData[index] = {
-            id: staticData[index].id,
-            attributeA: req.body.attributeA,
-            attributeB: req.body.attributeB,
-            attributeC: req.body.attributeC,
-            attributeD: req.body.attributeD,
-            attributeE: req.body.attributeE
-        };
+        if (Object.keys(errors).length === 0) {
 
-        res.status(201).json({
-            mensagem: getMessage('putSuccess')
-        });
+            staticData[index] = {
+                id: req.body.id,
+                attributeA: req.body.attributeA,
+                attributeB: req.body.attributeB,
+                attributeC: req.body.attributeC,
+                attributeD: req.body.attributeD,
+                attributeE: req.body.attributeE
+            }
+            res.errors
+            res.status(201).json({
+                mensagem: getMessage('putSuccess')
+            });
+            res.end();
+            return;
+        } else {
+            res.status(400).json(errors)
+        }
     }
 })
 
