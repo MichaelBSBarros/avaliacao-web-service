@@ -1,5 +1,5 @@
 import express from "express";
-import res from "express/lib/response"
+import res from "express/lib/response.js"
 
 const staticData = require('./data.mjs');
 const { v4: uuidv4 } = require('uuid');
