@@ -1,4 +1,4 @@
-export let staticData = [{
+let staticData = [{
         "_id": "e190e822-b23c-4119-ab44-0ca983ea427b",
         "attributeA": "AAA AAAAA",
         "attributeB": "BBBB BBBB",
@@ -79,3 +79,4 @@ export let staticData = [{
         "attributeE": true
     }
 ];
+export default staticData;
