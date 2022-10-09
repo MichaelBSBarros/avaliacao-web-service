@@ -68,7 +68,7 @@ app.put('/api/:_id', (req, res, next) => {
 
     Params.checkerId(req)
 
-    errors = attributeChecker(req)
+    let errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
