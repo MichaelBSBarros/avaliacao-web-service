@@ -5,7 +5,7 @@ export default class Params {
         let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
         let index = staticData.findIndex(v => v._id == _id)
 
-        const id = {
+        let id = {
             status: 0,
             msg: ""
         }
