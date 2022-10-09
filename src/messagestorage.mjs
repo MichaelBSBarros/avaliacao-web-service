@@ -37,6 +37,9 @@ export default class {
             case 'isBoolean':
                 message = `o atributo '${campo}' deve ser 'true' ou 'false'`
                 break;
+            case 'invalidEmail':
+                message = `email inválido`
+                break;
             case 'alterationSuccess':
                 message = 'alteração realizada com sucesso'
                 break;

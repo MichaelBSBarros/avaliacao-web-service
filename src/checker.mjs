@@ -1,46 +1,55 @@
 import messagestorage from './messagestorage.mjs';
+import * as EmailValidator from 'email-validator';
 
-function attributeChecker(req) {
+function senhahecker(req) {
 
     let errors = {}
 
-    if (!req.body.attributeA) {
-        errors["attributeA"] = (messagestorage.messagestorage.getMessage('requiredField', 'attributeA'))
-    } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
-        errors["attributeA"] = (messagestorage.getMessage('onlyLetters', 'attributeA'))
-    } else if (req.body.attributeA.length <= 1) {
-        errors["attributeA"] = (messagestorage.getMessage('lengthMoreThan', 'attributeA', 2))
-    } else if (req.body.attributeA.length > 100) {
-        errors["attributeA"] = (messagestorage.getMessage('lengthLessThan', 'attributeA', null, 100))
+    if (!req.body.nome) {
+        errors["nome"] = (messagestorage.messagestorage.getMessage('requiredField', 'nome'))
+    } else if (!/^[a-zA-Z]+$/.test(req.body.nome)) {
+        errors["nome"] = (messagestorage.getMessage('onlyLetters', 'nome'))
+    } else if (req.body.nome.length <= 1) {
+        errors["nome"] = (messagestorage.getMessage('lengthMoreThan', 'nome', 2))
+    } else if (req.body.nome.length > 100) {
+        errors["nome"] = (messagestorage.getMessage('lengthLessThan', 'nome', null, 100))
     }
 
-    if (!req.body.attributeB) {
-        errors["attributeB"] = (messagestorage.getMessage('requiredField', 'attributeB'))
-    } else if (req.body.attributeB.length < 8) {
-        errors["attributeB"] = (messagestorage.getMessage('lengthMoreThan', 'attributeB', 8))
-    } else if (req.body.attributeB.length > 40) {
-        errors["attributeB"] = (messagestorage.getMessage('lengthLessThan', 'attributeB', null, 40))
+    if (!req.body.email) {
+        errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
+    } else if (req.body.email.length < 8) {
+        errors["email"] = (messagestorage.getMessage('lengthMoreThan', 'email', 8))
+    } else if (req.body.email.length > 40) {
+        errors["email"] = (messagestorage.getMessage('lengthLessThan', 'email', null, 40))
+    } else if (!EmailValidator.validate(req.body.email)) {
+        errors["email"] = (messagestorage.getMessage('invalidEmail', 'email'))
     }
 
-    if (!req.body.attributeC) {
-        errors["attributeC"] = (messagestorage.getMessage('requiredField', 'attributeC'))
-    } else if (isNaN(req.body.attributeC)) {
-        errors["attributeC"] = (messagestorage.getMessage('isNumber', 'attributeC'))
+    if (!req.body.senha) {
+        errors["senha"] = (messagestorage.getMessage('requiredField', 'senha'))
+    } else if (req.body.senha.length < 8) {
+        errors["senha"] = (messagestorage.getMessage('lengthMoreThan', 'senha', 8))
+    } else if (req.body.senha.length > 40) {
+        errors["senha"] = (messagestorage.getMessage('lengthLessThan', 'senha', null, 40))
     }
 
-    if (!req.body.attributeD) {
-        errors["attributeD"] = (messagestorage.getMessage('requiredField', 'attributeD'))
-    } else if (isNaN(req.body.attributeD) || !Number.isInteger(req.body.attributeD)) {
-        errors["attributeD"] = (messagestorage.getMessage('isInt', 'attributeD'))
-    } else if (req.body.attributeD < 0) {
-        errors["attributeD"] = (messagestorage.getMessage('positiveNumber', 'attributeD'))
+    if (!req.body.telefone_fixo) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('requiredField', 'telefone_fixo'))
+    } else if (isNaN(req.body.telefone_fixo) || !Number.isInteger(req.body.telefone_fixo)) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('isInt', 'telefone_fixo'))
+    } else if (req.body.telefone_fixo < 0) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('positiveNumber', 'telefone_fixo'))
+    } else if (req.body.telefone_fixo.length < 10) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('lengthMoreThan', 'telefone_fixo', 10))
+    } else if (req.body.telefone_fixo.length > 11) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('lengthLessThan', 'telefone_fixo', null, 11))
     }
 
-    if (req.body.attributeE === "") {
-        errors["attributeE"] = (messagestorage.getMessage('requiredField', 'attributeE'))
-    } else if (typeof req.body.attributeE != "boolean") {
-        errors["attributeE"] = (messagestorage.getMessage('isBoolean', 'attributeE'))
+    if (req.body.usuario_ouvidor === "") {
+        errors["usuario_ouvidor"] = (messagestorage.getMessage('requiredField', 'usuario_ouvidor'))
+    } else if (typeof req.body.usuario_ouvidor != "boolean") {
+        errors["usuario_ouvidor"] = (messagestorage.getMessage('isBoolean', 'usuario_ouvidor'))
     }
     return errors;
 }
-export default attributeChecker;
+export default senhahecker;

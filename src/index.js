@@ -3,7 +3,7 @@ import res from "express/lib/response.js"
 
 import staticData from './data.mjs';
 import { uuid } from 'uuidv4';
-import attributeChecker from './checker.mjs';
+import senhahecker from './checker.mjs';
 import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
 
@@ -37,17 +37,17 @@ app.get('/api/:_id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    let errors = attributeChecker(req)
+    let errors = senhahecker(req)
 
     if (Object.keys(errors).length === 0) {
 
         staticData.push({
             _id: uuid(),
-            attributeA: req.body.attributeA,
-            attributeB: req.body.attributeB,
-            attributeC: req.body.attributeC,
-            attributeD: req.body.attributeD,
-            attributeE: req.body.attributeE
+            nome: req.body.nome,
+            email: req.body.email,
+            senha: req.body.senha,
+            telefone_fixo: req.body.telefone_fixo,
+            usuario_ouvidor: req.body.usuario_ouvidor
         });
 
         res.errors
@@ -70,17 +70,17 @@ app.put('/api/:_id', (req, res, next) => {
         })
     }
 
-    let errors = attributeChecker(req)
+    let errors = senhahecker(req)
 
     if (Object.keys(errors).length === 0) {
 
         staticData[index] = {
             _id: req.body._id,
-            attributeA: req.body.attributeA,
-            attributeB: req.body.attributeB,
-            attributeC: req.body.attributeC,
-            attributeD: req.body.attributeD,
-            attributeE: req.body.attributeE
+            nome: req.body.nome,
+            email: req.body.email,
+            senha: req.body.senha,
+            telefone_fixo: req.body.telefone_fixo,
+            usuario_ouvidor: req.body.usuario_ouvidor
         }
         res.errors
         res.status(201).json({
@@ -102,23 +102,23 @@ app.patch('/api/:_id', (req, res, next) => {
         })
     } else {
 
-        if (!req.body.attributeA) { req.body.attributeA = staticData[index].attributeA }
-        if (!req.body.attributeB) { req.body.attributeB = staticData[index].attributeB }
-        if (!req.body.attributeC) { req.body.attributeC = staticData[index].attributeC }
-        if (!req.body.attributeD) { req.body.attributeD = staticData[index].attributeD }
-        if (!req.body.attributeE) { req.body.attributeE = staticData[index].attributeE }
+        if (!req.body.nome) { req.body.nome = staticData[index].nome }
+        if (!req.body.email) { req.body.email = staticData[index].email }
+        if (!req.body.senha) { req.body.senha = staticData[index].senha }
+        if (!req.body.telefone_fixo) { req.body.telefone_fixo = staticData[index].telefone_fixo }
+        if (!req.body.usuario_ouvidor) { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
 
-        let errors = attributeChecker(req)
+        let errors = senhahecker(req)
 
         if (Object.keys(errors).length === 0) {
 
             staticData[index] = {
                 _id: staticData[index]._id,
-                attributeA: req.body.attributeA,
-                attributeB: req.body.attributeB,
-                attributeC: req.body.attributeC,
-                attributeD: req.body.attributeD,
-                attributeE: req.body.attributeE
+                nome: req.body.nome,
+                email: req.body.email,
+                senha: req.body.senha,
+                telefone_fixo: req.body.telefone_fixo,
+                usuario_ouvidor: req.body.usuario_ouvidor
             }
             res.errors
             res.status(201).json({
