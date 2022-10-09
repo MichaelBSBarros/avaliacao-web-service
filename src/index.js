@@ -89,4 +89,23 @@ app.put('/api/:id', (req, res, next) => {
     }
 })
 
+app.delete('/api/:id', (req, res) => {
+
+    let id = req.params.id || false
+    let index = staticData.findIndex(v => v.id == id)
+
+    if (!id) {
+        res.status(442).json({ erro: getMessage('invalidId') })
+    } else if (index === -1) {
+        res.status(404).json({ erro: getMessage('notFoundId') })
+    } else {
+        res.status(200).json({
+            mensagem: getMessage('delSuccess')
+        });
+        res.end();
+        staticData.deleteOne({ _id: id })
+        return;
+    }
+});
+
 app.listen(port);
