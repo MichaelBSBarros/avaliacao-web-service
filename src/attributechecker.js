@@ -1,6 +1,6 @@
-function attributeChecker(req) {
+let errors = {}
 
-    let errors = {}
+async function attributeChecker(req) {
 
     if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
