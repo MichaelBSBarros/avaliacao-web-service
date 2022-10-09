@@ -1,5 +1,5 @@
-const getMessage = require('./messagestorage');
-const staticData = require('./data');
+import getMessage from './messagestorage';
+import staticData from './data';
 
 export default class Params {
     static checkerId(req) {
