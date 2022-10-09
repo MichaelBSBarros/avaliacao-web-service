@@ -1,5 +1,7 @@
 function attributeChecker(req) {
 
+    let errors = {}
+
     if (!req.body.attributeA || req.body.attributeA === null) {
         errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
     } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
