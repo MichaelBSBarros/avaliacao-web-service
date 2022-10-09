@@ -3,7 +3,7 @@ import res from "express/lib/response.js"
 
 import staticData from './data.mjs';
 import { uuid } from 'uuidv4';
-const attributeChecker = require('./attributechecker');
+import attributeChecker from './checker.mjs';
 import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
 
