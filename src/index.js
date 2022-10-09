@@ -79,7 +79,7 @@ app.put('/api/:id', (req, res, next) => {
             attributeE: req.body.attributeE
         }
         res.errors
-        res.status(200).json({
+        res.status(201).json({
             mensagem: getMessage('putSuccess')
         });
         res.end();
@@ -90,14 +90,22 @@ app.put('/api/:id', (req, res, next) => {
 })
 
 exports.patch = (req, res, next) => {
-    let id = req.params.id;
-    let body = req.body;
 
-    for (let b in req.body) {
-        console.log(b);
-        console.log(req.body[b]);
+    let id = req.params.id || false
+    let index = staticData.findIndex(v => v.id == id)
+
+    if (!id) {
+        res.status(442).json({ erro: getMessage('invalidId') })
+    } else if (index === -1) {
+        res.status(404).json({ erro: getMessage('notFoundId') })
+    } else {
+        staticData[index] = req.body
+        res.status(201).json({
+            mensagem: getMessage('putSuccess')
+        });
     }
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
+
+
 }
 
 app.delete('/api/:id', (req, res) => {
