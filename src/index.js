@@ -89,7 +89,7 @@ app.put('/api/:id', (req, res, next) => {
     }
 })
 
-exports.patch = (req, res, next) => {
+app.patch('/api/:id', (req, res, next) => {
 
     let id = req.params.id || false
     let index = staticData.findIndex(v => v.id == id)
@@ -106,7 +106,7 @@ exports.patch = (req, res, next) => {
     }
 
 
-}
+})
 
 app.delete('/api/:id', (req, res) => {
 
