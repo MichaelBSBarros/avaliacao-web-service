@@ -8,6 +8,7 @@ import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
 
 const app = express();
+const functionReturn = '';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,6 +20,14 @@ app.get("/api", (req, res) => {
 
 app.get('/api/:_id', (req, res) => {
     const _id = req.params._id
+
+    functionReturn = Params.checkerId(req)
+
+    if (functionReturn) {
+        res.status(functionReturn.id.status).json({
+            erro: messagestorage.getMessage(functionReturn.id.msg)
+        })
+    }
 
     for (let data of staticData) {
         if (data._id === _id) {

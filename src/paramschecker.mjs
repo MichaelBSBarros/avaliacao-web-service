@@ -1,23 +1,25 @@
-import express from "express";
-import res from "express/lib/response.js"
 import staticData from './data.mjs';
-import messagestorage from './messagestorage.mjs';
 
 export default class Params {
     static checkerId(req) {
         let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
         let index = staticData.findIndex(v => v._id == _id)
 
+        const id = {
+            status: 0,
+            msg: ""
+        }
+
         if (!_id) {
-            res.status(442).json({
-                erro: messagestorage.getMessage('invalidId')
-            })
+            id.status = 442
+            id.msg = 'invalidId'
         }
 
         if (index === -1) {
-            res.status(404).json({
-                erro: messagestorage.getMessage('notFoundId')
-            })
+            id.status = 404
+            id.msg = 'notFoundId'
         }
+
+        return id.status > 0 ? id : false
     }
 }
