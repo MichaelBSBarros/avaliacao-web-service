@@ -97,6 +97,7 @@ exports.patch = (req, res, next) => {
         console.log(b);
         console.log(req.body[b]);
     }
+    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 }
 
 app.delete('/api/:id', (req, res) => {
