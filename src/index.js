@@ -2,7 +2,7 @@ import express from "express";
 import res from "express/lib/response.js"
 
 import staticData from './data.mjs';
-import { uuidv4 } from "uuid";
+import { uuid } from 'uuidv4';
 const attributeChecker = require('./attributechecker');
 import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
@@ -36,7 +36,7 @@ app.post('/api', (req, res) => {
     if (Object.keys(errors).length === 0) {
 
         staticData.push({
-            _id: uuidv4(),
+            _id: uuid(),
             attributeA: req.body.attributeA,
             attributeB: req.body.attributeB,
             attributeC: req.body.attributeC,
