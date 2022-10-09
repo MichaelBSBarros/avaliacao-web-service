@@ -102,7 +102,7 @@ app.delete('/api/:id', (req, res) => {
         res.status(200).json({
             mensagem: getMessage('delSuccess')
         });
-        return true;
+        staticData.splice(index)
     }
 });
 
