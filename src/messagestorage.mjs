@@ -38,7 +38,10 @@ export default class {
                 message = `o atributo '${campo}' deve ser 'true' ou 'false'`
                 break;
             case 'invalidEmail':
-                message = `email inválido`
+                message = 'e-mail inválido'
+                break;
+            case 'onlyNumbers':
+                message = 'telefone deve conter apenas números'
                 break;
             case 'alterationSuccess':
                 message = 'alteração realizada com sucesso'

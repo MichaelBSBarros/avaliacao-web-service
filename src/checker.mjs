@@ -7,7 +7,7 @@ function attributeChecker(req) {
 
     if (!req.body.nome) {
         errors["nome"] = (messagestorage.getMessage('requiredField', 'nome'))
-    } else if (!/^[a-zA-Z ]+$/.test(req.body.nome)) {
+    } else if (!/^[a-zA-Z ^~-`´¨çÇ]+$/.test(req.body.nome)) {
         errors["nome"] = (messagestorage.getMessage('onlyLetters', 'nome'))
     } else if (req.body.nome.length <= 1) {
         errors["nome"] = (messagestorage.getMessage('lengthMoreThan', 'nome', 2))
@@ -35,8 +35,8 @@ function attributeChecker(req) {
 
     if (!req.body.telefone_fixo) {
         errors["telefone_fixo"] = (messagestorage.getMessage('requiredField', 'telefone_fixo'))
-    } else if (isNaN(req.body.telefone_fixo) || !Number.isInteger(req.body.telefone_fixo)) {
-        errors["telefone_fixo"] = (messagestorage.getMessage('isInt', 'telefone_fixo'))
+    } else if (!/^[0-9]+$/.test(req.body.telefone_fixo)) {
+        errors["telefone_fixo"] = (messagestorage.getMessage('onlyNumbers', 'telefone_fixo'))
     } else if (req.body.telefone_fixo < 0) {
         errors["telefone_fixo"] = (messagestorage.getMessage('positiveNumber', 'telefone_fixo'))
     } else if (req.body.telefone_fixo.length < 10) {
