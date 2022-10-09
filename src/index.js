@@ -15,11 +15,11 @@ app.get("/api", (req, res) => {
     res.json(staticData);
 });
 
-app.get('/api/:id', (req, res) => {
-    const id = req.params.id
+app.get('/api/:_id', (req, res) => {
+    const _id = req.params._id
 
     for (let data of staticData) {
-        if (data.id === id) {
+        if (data._id === _id) {
             res.json(data)
             return
         }
@@ -34,7 +34,7 @@ app.post('/api', (req, res) => {
     if (Object.keys(errors).length === 0) {
 
         staticData.push({
-            id: uuidv4(),
+            _id: uuidv4(),
             attributeA: req.body.attributeA,
             attributeB: req.body.attributeB,
             attributeC: req.body.attributeC,
@@ -53,15 +53,15 @@ app.post('/api', (req, res) => {
     }
 });
 
-app.put('/api/:id', (req, res, next) => {
+app.put('/api/:_id', (req, res, next) => {
 
-    let id = parseInt(req.params.id, 10) || false
+    let _id = parseInt(req.params._id, 10) || false
 
-    if (!id) {
+    if (!_id) {
         res.status(442).json({ erro: getMessage('invalidId') })
     }
 
-    let index = staticData.findIndex(v => v.id == id)
+    let index = staticData.findIndex(v => v._id == _id)
     if (index === -1) {
         res.status(404).json({ erro: getMessage('notFoundId') })
     }
@@ -71,7 +71,7 @@ app.put('/api/:id', (req, res, next) => {
     if (Object.keys(errors).length === 0) {
 
         staticData[index] = {
-            id: req.body.id,
+            _id: req.body._id,
             attributeA: req.body.attributeA,
             attributeB: req.body.attributeB,
             attributeC: req.body.attributeC,
@@ -80,7 +80,7 @@ app.put('/api/:id', (req, res, next) => {
         }
         res.errors
         res.status(201).json({
-            mensagem: getMessage('putSuccess')
+            mensagem: getMessage('alterationSuccess')
         });
         res.end();
         return;
@@ -89,12 +89,12 @@ app.put('/api/:id', (req, res, next) => {
     }
 })
 
-app.patch('/api/:id', (req, res, next) => {
+app.patch('/api/:_id', (req, res, next) => {
 
-    let id = req.params.id || false
-    let index = staticData.findIndex(v => v.id == id)
+    let _id = req.params._id || false
+    let index = staticData.findIndex(v => v._id == _id)
 
-    if (!id) {
+    if (!_id) {
         res.status(442).json({ erro: getMessage('invalidId') })
     } else if (index === -1) {
         res.status(404).json({ erro: getMessage('notFoundId') })
@@ -111,7 +111,7 @@ app.patch('/api/:id', (req, res, next) => {
         if (Object.keys(errors).length === 0) {
 
             staticData[index] = {
-                id: staticData[index].id,
+                _id: staticData[index]._id,
                 attributeA: req.body.attributeA,
                 attributeB: req.body.attributeB,
                 attributeC: req.body.attributeC,
@@ -120,7 +120,7 @@ app.patch('/api/:id', (req, res, next) => {
             }
             res.errors
             res.status(201).json({
-                mensagem: getMessage('putSuccess')
+                mensagem: getMessage('alterationSuccess')
             });
             res.end();
             return;
@@ -130,12 +130,12 @@ app.patch('/api/:id', (req, res, next) => {
     }
 })
 
-app.delete('/api/:id', (req, res) => {
+app.delete('/api/:_id', (req, res) => {
 
-    let id = req.params.id || false
-    let index = staticData.findIndex(v => v.id == id)
+    let _id = req.params._id || false
+    let index = staticData.findIndex(v => v._id == _id)
 
-    if (!id) {
+    if (!_id) {
         res.status(442).json({ erro: getMessage('invalidId') })
     } else if (index === -1) {
         res.status(404).json({ erro: getMessage('notFoundId') })

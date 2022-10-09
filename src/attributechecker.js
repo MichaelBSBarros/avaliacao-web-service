@@ -4,7 +4,7 @@ function attributeChecker(req) {
 
     let errors = {}
 
-    if (!req.body.attributeA || req.body.attributeA === null) {
+    if (!req.body.attributeA) {
         errors["attributeA"] = (getMessage('requiredField', 'attributeA'))
     } else if (!/^[a-zA-Z]+$/.test(req.body.attributeA)) {
         errors["attributeA"] = (getMessage('onlyLetters', 'attributeA'))
@@ -14,7 +14,7 @@ function attributeChecker(req) {
         errors["attributeA"] = (getMessage('lengthLessThan', 'attributeA', null, 100))
     }
 
-    if (!req.body.attributeB || req.body.attributeB === null) {
+    if (!req.body.attributeB) {
         errors["attributeB"] = (getMessage('requiredField', 'attributeB'))
     } else if (req.body.attributeB.length < 8) {
         errors["attributeB"] = (getMessage('lengthMoreThan', 'attributeB', 8))
@@ -22,13 +22,13 @@ function attributeChecker(req) {
         errors["attributeB"] = (getMessage('lengthLessThan', 'attributeB', null, 40))
     }
 
-    if (!req.body.attributeC || req.body.attributeC === null) {
+    if (!req.body.attributeC) {
         errors["attributeC"] = (getMessage('requiredField', 'attributeC'))
     } else if (isNaN(req.body.attributeC)) {
         errors["attributeC"] = (getMessage('isNumber', 'attributeC'))
     }
 
-    if (!req.body.attributeD || req.body.attributeD === null) {
+    if (!req.body.attributeD) {
         errors["attributeD"] = (getMessage('requiredField', 'attributeD'))
     } else if (isNaN(req.body.attributeD) || !Number.isInteger(req.body.attributeD)) {
         errors["attributeD"] = (getMessage('isInt', 'attributeD'))
@@ -36,7 +36,7 @@ function attributeChecker(req) {
         errors["attributeD"] = (getMessage('positiveNumber', 'attributeD'))
     }
 
-    if (req.body.attributeE === "" || req.body.attributeE === null) {
+    if (req.body.attributeE === "") {
         errors["attributeE"] = (getMessage('requiredField', 'attributeE'))
     } else if (typeof req.body.attributeE != "boolean") {
         errors["attributeE"] = (getMessage('isBoolean', 'attributeE'))

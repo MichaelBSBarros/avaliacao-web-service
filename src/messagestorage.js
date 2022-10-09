@@ -10,33 +10,33 @@
               message = 'id não encontrado'
               break;
           case 'requiredField':
-              message = `o campo '${campo}' é obrigatório`;
+              message = `o atributo '${campo}' é obrigatório`;
               break;
           case 'isInt':
-              message = `o campo '${campo}' deve ser um número inteiro`
+              message = `o atributo '${campo}' deve ser um número inteiro`
               break;
           case 'higherThanZero':
-              message = `o campo '${campo}' deve ser maior ou igual a 0`
+              message = `o atributo '${campo}' deve ser maior ou igual a 0`
               break;
           case 'positiveNumber':
-              message = `o campo '${campo}' deve ser um número positivo`
+              message = `o atributo '${campo}' deve ser um número positivo`
               break;
           case 'lengthMoreThan':
-              message = `o campo '${campo}' deve conter ao menos ${minLen} dígitos`
+              message = `o atributo '${campo}' deve conter ao menos ${minLen} dígitos`
               break;
           case 'lengthLessThan':
-              message = `o campo '${campo}' deve conter no máximo ${maxLen} dígitos`
+              message = `o atributo '${campo}' deve conter no máximo ${maxLen} dígitos`
               break;
           case 'onlyLetters':
-              message = `o campo '${campo}' deve conter apenas letras`
+              message = `o atributo '${campo}' deve conter apenas letras`
               break;
           case 'isNumber':
-              message = `o campo '${campo}' deve ser um número`
+              message = `o atributo '${campo}' deve ser um número`
               break;
           case 'isBoolean':
-              message = `o campo '${campo}' deve ser 'true' ou 'false'`
+              message = `o atributo '${campo}' deve ser 'true' ou 'false'`
               break;
-          case 'putSuccess':
+          case 'alterationSuccess':
               message = 'alteração realizada com sucesso'
               break;
           case 'postSuccess':
