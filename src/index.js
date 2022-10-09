@@ -100,26 +100,35 @@ app.patch('/api/:id', (req, res, next) => {
         res.status(404).json({ erro: getMessage('notFoundId') })
     } else {
 
-        let tempAttributeA, tempAttributeB, tempAttributeC, tempAttributeD, tempAttributeE = "";
+        //let tempAttributeA, tempAttributeB, tempAttributeC, tempAttributeD, tempAttributeE = "";
+        //
+        //!req.body.attributeA ? tempAttributeA = staticData[index].attributeA : tempAttributeA = req.body.attributeA;
+        //!req.body.attributeB ? tempAttributeB = staticData[index].attributeB : tempAttributeB = req.body.attributeB;
+        //!req.body.attributeC ? tempAttributeC = staticData[index].attributeC : tempAttributeC = req.body.attributeC;
+        //!req.body.attributeD ? tempAttributeD = staticData[index].attributeD : tempAttributeD = req.body.attributeD;
+        //!req.body.attributeE ? tempAttributeE = staticData[index].attributeE : tempAttributeE = req.body.attributeE;
+        //
+        //staticData[index] = {
+        //    id: staticData[index].id,
+        //    attributeA: tempAttributeA,
+        //    attributeB: tempAttributeB,
+        //    attributeC: tempAttributeC,
+        //    attributeD: tempAttributeD,
+        //    attributeE: tempAttributeE
+        //};
+        //
+        //res.status(201).json({
+        //    mensagem: getMessage('putSuccess')
+        //});
+        let id = req.params.id;
+        let body = req.body;
 
-        !req.body.attributeA ? tempAttributeA = staticData[index].attributeA : tempAttributeA = req.body.attributeA;
-        !req.body.attributeB ? tempAttributeB = staticData[index].attributeB : tempAttributeB = req.body.attributeB;
-        !req.body.attributeC ? tempAttributeC = staticData[index].attributeC : tempAttributeC = req.body.attributeC;
-        !req.body.attributeD ? tempAttributeD = staticData[index].attributeD : tempAttributeD = req.body.attributeD;
-        !req.body.attributeE ? tempAttributeE = staticData[index].attributeE : tempAttributeE = req.body.attributeE;
+        for (let b in req.body) {
+            console.log(b);
+            console.log(req.body[b]);
+        }
 
-        staticData[index] = {
-            id: staticData[index].id,
-            attributeA: tempAttributeA,
-            attributeB: tempAttributeB,
-            attributeC: tempAttributeC,
-            attributeD: tempAttributeD,
-            attributeE: tempAttributeE
-        };
-
-        res.status(201).json({
-            mensagem: getMessage('putSuccess')
-        });
+        res.status(201).send(`Requisição recebida com sucesso! ${id}`);
     }
 })
 
