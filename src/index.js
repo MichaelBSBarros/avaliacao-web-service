@@ -8,7 +8,6 @@ import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
 
 const app = express();
-const functionReturn = '';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,11 +20,11 @@ app.get("/api", (req, res) => {
 app.get('/api/:_id', (req, res) => {
     let _id = req.params._id
 
-    functionReturn = Params.checkerId(req)
+    let functionReturn = Params.checkerId(req)
 
     if (functionReturn) {
-        res.status(functionReturn.id.status).json({
-            erro: messagestorage.getMessage(functionReturn.id.msg)
+        res.status(functionReturn.status).json({
+            erro: messagestorage.getMessage(functionReturn.msg)
         })
     }
 
