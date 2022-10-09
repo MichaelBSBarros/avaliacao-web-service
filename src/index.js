@@ -3,7 +3,7 @@ const res = require('express/lib/response');
 const getMessage = require('./messagestorage');
 const staticData = require('./data');
 const { v4: uuidv4 } = require('uuid');
-import Checker from './attributechecker';
+const { attributeChecker } = require('./attributechecker');
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.get('/api/:id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    errors = Checker.attributeChecker(req)
+    errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -66,7 +66,7 @@ app.put('/api/:id', (req, res, next) => {
         res.status(404).json({ erro: getMessage('notFoundId') })
     }
 
-    errors = Checker.attributeChecker(req)
+    errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
