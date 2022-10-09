@@ -19,7 +19,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get('/api/:_id', (req, res) => {
-    const _id = req.params._id
+    let _id = req.params._id
 
     functionReturn = Params.checkerId(req)
 
@@ -40,7 +40,7 @@ app.get('/api/:_id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    errors = attributeChecker(req)
+    let errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -108,7 +108,7 @@ app.patch('/api/:_id', (req, res, next) => {
         if (!req.body.attributeD) { req.body.attributeD = staticData[index].attributeD }
         if (!req.body.attributeE) { req.body.attributeE = staticData[index].attributeE }
 
-        errors = attributeChecker(req)
+        let errors = attributeChecker(req)
 
         if (Object.keys(errors).length === 0) {
 
