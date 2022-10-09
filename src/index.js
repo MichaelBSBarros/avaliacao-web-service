@@ -1,6 +1,7 @@
-const express = require('express');
-const res = require('express/lib/response');
-const staticData = require('./data');
+import express from "express";
+import res from "express/lib/response"
+
+const staticData = require('./data.mjs');
 const { v4: uuidv4 } = require('uuid');
 const attributeChecker = require('./attributechecker');
 import Params from './paramschecker.mjs';
