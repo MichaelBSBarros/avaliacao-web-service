@@ -2,7 +2,7 @@ import staticData from './data.mjs';
 
 export default class Params {
     static checkerId(req) {
-        let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
+        let _id = (req.params._id).replace(/[^0-9a-zA-Z-]/g, "") || false
         let index = staticData.findIndex(v => v._id == _id)
 
         console.log(_id)
