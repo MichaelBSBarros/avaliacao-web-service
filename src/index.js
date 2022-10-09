@@ -55,7 +55,7 @@ app.post('/api', (req, res) => {
 
 app.put('/api/:_id', (req, res, next) => {
 
-    let _id = parseInt(req.params._id, 10) || false
+    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
 
     if (!_id) {
         res.status(442).json({ erro: getMessage('invalidId') })
