@@ -63,7 +63,12 @@ app.post('/api', (req, res) => {
 
 app.put('/api/:_id', (req, res, next) => {
 
-    Params.checkerId(req)
+    let functionReturn = Params.checkerId(req)
+    if (functionReturn) {
+        res.status(functionReturn.status).json({
+            erro: messagestorage.getMessage(functionReturn.msg)
+        })
+    }
 
     let errors = attributeChecker(req)
 
@@ -90,13 +95,11 @@ app.put('/api/:_id', (req, res, next) => {
 
 app.patch('/api/:_id', (req, res, next) => {
 
-    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
-    let index = staticData.findIndex(v => v._id == _id)
-
-    if (!_id) {
-        res.status(442).json({ erro: messagestorage.getMessage('invalidId') })
-    } else if (index === -1) {
-        res.status(404).json({ erro: messagestorage.getMessage('notFoundId') })
+    let functionReturn = Params.checkerId(req)
+    if (functionReturn) {
+        res.status(functionReturn.status).json({
+            erro: messagestorage.getMessage(functionReturn.msg)
+        })
     } else {
 
         if (!req.body.attributeA) { req.body.attributeA = staticData[index].attributeA }
@@ -131,13 +134,11 @@ app.patch('/api/:_id', (req, res, next) => {
 
 app.delete('/api/:_id', (req, res) => {
 
-    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
-    let index = staticData.findIndex(v => v._id == _id)
-
-    if (!_id) {
-        res.status(442).json({ erro: messagestorage.getMessage('invalidId') })
-    } else if (index === -1) {
-        res.status(404).json({ erro: messagestorage.getMessage('notFoundId') })
+    let functionReturn = Params.checkerId(req)
+    if (functionReturn) {
+        res.status(functionReturn.status).json({
+            erro: messagestorage.getMessage(functionReturn.msg)
+        })
     } else {
         res.status(200).json({
             mensagem: messagestorage.getMessage('delSuccess')
