@@ -21,7 +21,6 @@ app.get('/api/:_id', (req, res) => {
     let _id = req.params._id
 
     let functionReturn = Params.checkerId(req)
-
     if (functionReturn) {
         res.status(functionReturn.status).json({
             erro: messagestorage.getMessage(functionReturn.msg)
@@ -34,7 +33,6 @@ app.get('/api/:_id', (req, res) => {
             return
         }
     }
-    res.status(404).json({ erro: messagestorage.getMessage('notFoundId') });
 });
 
 app.post('/api', (req, res) => {
