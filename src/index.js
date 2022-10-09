@@ -108,11 +108,11 @@ app.patch('/api/:id', (req, res, next) => {
 
         staticData[index] = {
             id: staticData[index].id,
-            attributeA: req.body.attributeA,
-            attributeB: req.body.attributeB,
-            attributeC: req.body.attributeC,
-            attributeD: req.body.attributeD,
-            attributeE: req.body.attributeE
+            attributeA: attributeA,
+            attributeB: attributeB,
+            attributeC: attributeC,
+            attributeD: attributeD,
+            attributeE: rattributeE
         };
 
         res.status(201).json({
