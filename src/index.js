@@ -4,6 +4,7 @@ const getMessage = require('./messagestorage');
 const staticData = require('./data');
 const { v4: uuidv4 } = require('uuid');
 const attributeChecker = require('./attributechecker');
+import Params from './paramschecker.mjs';
 
 const app = express();
 
@@ -55,16 +56,7 @@ app.post('/api', (req, res) => {
 
 app.put('/api/:_id', (req, res, next) => {
 
-    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
-
-    if (!_id) {
-        res.status(442).json({ erro: getMessage('invalidId') })
-    }
-
-    let index = staticData.findIndex(v => v._id == _id)
-    if (index === -1) {
-        res.status(404).json({ erro: getMessage('notFoundId') })
-    }
+    Params.
 
     errors = attributeChecker(req)
 
@@ -91,7 +83,7 @@ app.put('/api/:_id', (req, res, next) => {
 
 app.patch('/api/:_id', (req, res, next) => {
 
-    let _id = req.params._id || false
+    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
     let index = staticData.findIndex(v => v._id == _id)
 
     if (!_id) {
@@ -132,7 +124,7 @@ app.patch('/api/:_id', (req, res, next) => {
 
 app.delete('/api/:_id', (req, res) => {
 
-    let _id = req.params._id || false
+    let _id = (req.params._id).replace(/[^a-zA-Z-]/g, "") || false
     let index = staticData.findIndex(v => v._id == _id)
 
     if (!_id) {
