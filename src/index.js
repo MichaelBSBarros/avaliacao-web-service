@@ -100,35 +100,26 @@ app.patch('/api/:id', (req, res, next) => {
         res.status(404).json({ erro: getMessage('notFoundId') })
     } else {
 
-        //let tempAttributeA, tempAttributeB, tempAttributeC, tempAttributeD, tempAttributeE = "";
-        //
-        //!req.body.attributeA ? tempAttributeA = staticData[index].attributeA : tempAttributeA = req.body.attributeA;
-        //!req.body.attributeB ? tempAttributeB = staticData[index].attributeB : tempAttributeB = req.body.attributeB;
-        //!req.body.attributeC ? tempAttributeC = staticData[index].attributeC : tempAttributeC = req.body.attributeC;
-        //!req.body.attributeD ? tempAttributeD = staticData[index].attributeD : tempAttributeD = req.body.attributeD;
-        //!req.body.attributeE ? tempAttributeE = staticData[index].attributeE : tempAttributeE = req.body.attributeE;
-        //
-        //staticData[index] = {
-        //    id: staticData[index].id,
-        //    attributeA: tempAttributeA,
-        //    attributeB: tempAttributeB,
-        //    attributeC: tempAttributeC,
-        //    attributeD: tempAttributeD,
-        //    attributeE: tempAttributeE
-        //};
-        //
-        //res.status(201).json({
-        //    mensagem: getMessage('putSuccess')
-        //});
-        let id = req.params.id;
-        let body = req.body;
+        if (!req.body.attributeA) { req.body.attributeA = staticData[index].attributeA }
+        if (!req.body.attributeB) { req.body.attributeB = staticData[index].attributeB }
+        if (!req.body.attributeC) { req.body.attributeC = staticData[index].attributeC }
+        if (!req.body.attributeD) { req.body.attributeD = staticData[index].attributeD }
+        if (!req.body.attributeE) { req.body.attributeE = staticData[index].attributeE }
 
-        for (let b in req.body) {
-            console.log(b);
-            console.log(req.body[b]);
-        }
+        errors = attributeChecker(req)
 
-        res.status(201).send(`Requisição recebida com sucesso! ${id}`);
+        staticData[index] = {
+            id: staticData[index].id,
+            attributeA: req.body.attributeA,
+            attributeB: req.body.attributeB,
+            attributeC: req.body.attributeC,
+            attributeD: req.body.attributeD,
+            attributeE: req.body.attributeE
+        };
+
+        res.status(201).json({
+            mensagem: getMessage('putSuccess')
+        });
     }
 })
 
