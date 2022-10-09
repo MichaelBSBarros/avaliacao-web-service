@@ -100,19 +100,21 @@ app.patch('/api/:id', (req, res, next) => {
         res.status(404).json({ erro: getMessage('notFoundId') })
     } else {
 
-        !req.body.attributeA ? attributeA = staticData[index].attributeA : attributeA = req.body.attributeA;
-        !req.body.attributeB ? attributeB = staticData[index].attributeB : attributeB = req.body.attributeB;
-        !req.body.attributeC ? attributeC = staticData[index].attributeC : attributeC = req.body.attributeC;
-        !req.body.attributeD ? attributeD = staticData[index].attributeD : attributeD = req.body.attributeD;
-        !req.body.attributeE ? attributeE = staticData[index].attributeE : attributeE = req.body.attributeE;
+        let tempAttributeA, tempAttributeB, tempAttributeC, tempAttributeD, tempAttributeE = "";
+
+        !req.body.attributeA ? tempAttributeA = staticData[index].attributeA : tempAttributeA = req.body.attributeA;
+        !req.body.attributeB ? tempAttributeB = staticData[index].attributeB : tempAttributeB = req.body.attributeB;
+        !req.body.attributeC ? tempAttributeC = staticData[index].attributeC : tempAttributeC = req.body.attributeC;
+        !req.body.attributeD ? tempAttributeD = staticData[index].attributeD : tempAttributeD = req.body.attributeD;
+        !req.body.attributeE ? tempAttributeE = staticData[index].attributeE : tempAttributeE = req.body.attributeE;
 
         staticData[index] = {
             id: staticData[index].id,
-            attributeA: attributeA,
-            attributeB: attributeB,
-            attributeC: attributeC,
-            attributeD: attributeD,
-            attributeE: rattributeE
+            attributeA: tempAttributeA,
+            attributeB: tempAttributeB,
+            attributeC: tempAttributeC,
+            attributeD: tempAttributeD,
+            attributeE: tempAttributeE
         };
 
         res.status(201).json({
