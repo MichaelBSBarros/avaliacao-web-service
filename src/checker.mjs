@@ -6,7 +6,7 @@ function attributeChecker(req) {
     let errors = {}
 
     if (!req.body.nome) {
-        errors["nome"] = (messagestorage.messagestorage.getMessage('requiredField', 'nome'))
+        errors["nome"] = (messagestorage.getMessage('requiredField', 'nome'))
     } else if (!/^[a-zA-Z]+$/.test(req.body.nome)) {
         errors["nome"] = (messagestorage.getMessage('onlyLetters', 'nome'))
     } else if (req.body.nome.length <= 1) {
