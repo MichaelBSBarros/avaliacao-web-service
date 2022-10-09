@@ -1,7 +1,7 @@
 import messagestorage from './messagestorage.mjs';
 import * as EmailValidator from 'email-validator';
 
-function senhahecker(req) {
+function attributeChecker(req) {
 
     let errors = {}
 
@@ -52,4 +52,4 @@ function senhahecker(req) {
     }
     return errors;
 }
-export default senhahecker;
+export default attributeChecker;

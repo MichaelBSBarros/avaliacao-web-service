@@ -3,7 +3,7 @@ import res from "express/lib/response.js"
 
 import staticData from './data.mjs';
 import { uuid } from 'uuidv4';
-import senhahecker from './checker.mjs';
+import attributeChecker from './checker.mjs';
 import Params from './paramschecker.mjs';
 import messagestorage from './messagestorage.mjs';
 
@@ -37,7 +37,7 @@ app.get('/api/:_id', (req, res) => {
 
 app.post('/api', (req, res) => {
 
-    let errors = senhahecker(req)
+    let errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -70,7 +70,7 @@ app.put('/api/:_id', (req, res, next) => {
         })
     }
 
-    let errors = senhahecker(req)
+    let errors = attributeChecker(req)
 
     if (Object.keys(errors).length === 0) {
 
@@ -108,7 +108,7 @@ app.patch('/api/:_id', (req, res, next) => {
         if (!req.body.telefone_fixo) { req.body.telefone_fixo = staticData[index].telefone_fixo }
         if (!req.body.usuario_ouvidor) { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
 
-        let errors = senhahecker(req)
+        let errors = attributeChecker(req)
 
         if (Object.keys(errors).length === 0) {
 
