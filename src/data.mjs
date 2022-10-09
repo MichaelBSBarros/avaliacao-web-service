@@ -1,4 +1,4 @@
-let staticData = [{
+export let staticData = [{
         "_id": "e190e822-b23c-4119-ab44-0ca983ea427b",
         "attributeA": "AAA AAAAA",
         "attributeB": "BBBB BBBB",
@@ -79,4 +79,3 @@ let staticData = [{
         "attributeE": true
     }
 ];
-module.exports = staticData

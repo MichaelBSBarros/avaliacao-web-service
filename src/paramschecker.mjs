@@ -1,4 +1,4 @@
-import staticData from './data';
+import staticData from './data.mjs';
 import messagestorage from './messagestorage.mjs';
 
 export default class Params {
