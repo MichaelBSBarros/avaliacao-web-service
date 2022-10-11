@@ -2,7 +2,7 @@ import messagestorage from './messagestorage.mjs';
 import * as EmailValidator from 'email-validator';
 import staticData from './data.mjs';
 
-function attributeChecker(req, userId = -1) {
+function attributeChecker(req, userId) {
 
     let errors = {};
 
@@ -29,15 +29,14 @@ function attributeChecker(req, userId = -1) {
     };
 
     let index = staticData.findIndex(v => v.email == req.body.email)
-    let x = staticData[index]._id || -1
 
-    console.log("index: " + index)
-    console.log("userID: " + index)
-    console.log("static user id: " + staticData[index]._id)
+    if (index > -1) {
+        if (userId == -1 || userId != staticData[index]._id) {
+            errors["email"] = (messagestorage.getMessage('emailExist'))
+        }
+    }
 
-    if (userId != x || index > -1) {
-        errors["email"] = (messagestorage.getMessage('emailExist'))
-    } else if (!req.body.email) {
+    if (!req.body.email) {
         errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
     } else if (req.body.email.length < emailLengthMin) {
         errors["email"] = (messagestorage.getMessage('lengthMoreThan', 'email', emailLengthMin))
