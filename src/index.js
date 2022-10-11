@@ -112,7 +112,7 @@ app.patch('/usuarios/:_id', (req, res, next) => {
         if (!req.body.telefone_fixo) { req.body.telefone_fixo = staticData[index].telefone_fixo }
         if (!req.body.usuario_ouvidor) { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
 
-        let errors = attributeChecker(req, functionReturn.index)
+        let errors = attributeChecker(req, staticData[index]._id)
 
         if (Object.keys(errors).length === 0) {
 
