@@ -11,3 +11,5 @@ Prova 1 - Construção API - RESTFul
   Link para a API:
     https://avaliacao-web-service.herokuapp.com/usuarios
 
+  Link para Swegger:
+    https://app.swaggerhub.com/apis-docs/MichaelBSBarros/api-srasp-fnr/1.0.0#/
