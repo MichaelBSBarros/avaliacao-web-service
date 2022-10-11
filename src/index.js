@@ -114,6 +114,9 @@ app.patch('/usuarios/:_id', (req, res, next) => {
 
         let errors = attributeChecker(req, staticData[index]._id)
 
+        console.log(req.body.usuario_ouvidor)
+        console.log(staticData[index].usuario_ouvidor)
+
         if (Object.keys(errors).length === 0) {
 
             staticData[index] = {
