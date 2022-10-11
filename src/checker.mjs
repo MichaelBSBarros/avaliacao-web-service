@@ -18,9 +18,6 @@ function attributeChecker(req) {
     let telFixoLengthMin = 10;
     let telFixoLengthMax = 11;
 
-    console.log(req.body.nome.length)
-    console.log(nomeLengthMin)
-
     if (!req.body.nome) {
         errors["nome"] = (messagestorage.getMessage('requiredField', 'nome'))
     } else if (!/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/.test(req.body.nome)) {
