@@ -105,6 +105,8 @@ app.patch('/usuarios/:_id', (req, res, next) => {
         })
     } else {
         let index = functionReturn.index
+        console.log(index)
+        console.log(functionReturn.index)
 
         if (!req.body.nome) { req.body.nome = staticData[index].nome }
         if (!req.body.email) { req.body.email = staticData[index].email }
