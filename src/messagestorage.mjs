@@ -40,6 +40,9 @@ export default class {
             case 'invalidEmail':
                 message = 'e-mail inválido'
                 break;
+            case 'emailExist':
+                message = 'e-mail já cadastrado'
+                break;
             case 'onlyNumbers':
                 message = 'telefone deve conter apenas números'
                 break;

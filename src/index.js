@@ -13,11 +13,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000;
 
-app.get("/api", (req, res) => {
+app.get("/usuarios", (req, res) => {
     res.json(staticData);
 });
 
-app.get('/api/:_id', (req, res) => {
+app.get('/usuarios/:_id', (req, res) => {
     let _id = req.params._id
 
     let functionReturn = Params.checkerId(req)
@@ -35,7 +35,7 @@ app.get('/api/:_id', (req, res) => {
     }
 });
 
-app.post('/api', (req, res) => {
+app.post('/usuarios', (req, res) => {
 
     let errors = attributeChecker(req)
 
@@ -61,7 +61,7 @@ app.post('/api', (req, res) => {
     }
 });
 
-app.put('/api/:_id', (req, res, next) => {
+app.put('/usuarios/:_id', (req, res, next) => {
 
     let functionReturn = Params.checkerId(req)
     if (functionReturn) {
@@ -93,7 +93,7 @@ app.put('/api/:_id', (req, res, next) => {
     }
 })
 
-app.patch('/api/:_id', (req, res, next) => {
+app.patch('/usuarios/:_id', (req, res, next) => {
 
     let functionReturn = Params.checkerId(req)
     if (functionReturn) {
@@ -132,7 +132,7 @@ app.patch('/api/:_id', (req, res, next) => {
     }
 })
 
-app.delete('/api/:_id', (req, res) => {
+app.delete('/usuarios/:_id', (req, res) => {
 
     let functionReturn = Params.checkerId(req)
     if (functionReturn) {

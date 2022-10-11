@@ -14,7 +14,7 @@ export default class Params {
         }
 
         if (!_id) {
-            id.status = 442
+            id.status = 400
             id.msg = 'invalidId'
             return id
         } else if (index === -1) {

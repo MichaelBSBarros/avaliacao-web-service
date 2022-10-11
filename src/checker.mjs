@@ -1,5 +1,6 @@
 import messagestorage from './messagestorage.mjs';
 import * as EmailValidator from 'email-validator';
+import staticData from './data.mjs';
 
 function attributeChecker(req) {
 
@@ -15,6 +16,7 @@ function attributeChecker(req) {
         errors["nome"] = (messagestorage.getMessage('lengthLessThan', 'nome', null, 100))
     }
 
+    let index = staticData.findIndex(v => v.email == req.body.email)
     if (!req.body.email) {
         errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
     } else if (req.body.email.length < 8) {
@@ -23,6 +25,8 @@ function attributeChecker(req) {
         errors["email"] = (messagestorage.getMessage('lengthLessThan', 'email', null, 40))
     } else if (!EmailValidator.validate(req.body.email)) {
         errors["email"] = (messagestorage.getMessage('invalidEmail', 'email'))
+    } else if (index > -1) {
+        errors["email"] = (messagestorage.getMessage('emailExist'))
     }
 
     if (!req.body.senha) {
