@@ -10,7 +10,8 @@ export default class Params {
 
         let id = {
             status: 0,
-            msg: ""
+            msg: "",
+            index: -1
         }
 
         if (!_id) {
@@ -21,8 +22,7 @@ export default class Params {
             id.status = 404
             id.msg = 'notFoundId'
             return id
-        } else {
-            return false
         }
+        return id
     }
 }

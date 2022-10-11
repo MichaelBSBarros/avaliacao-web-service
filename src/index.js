@@ -64,7 +64,7 @@ app.post('/usuarios', (req, res) => {
 app.put('/usuarios/:_id', (req, res, next) => {
 
     let functionReturn = Params.checkerId(req)
-    if (functionReturn) {
+    if (functionReturn.status != 0) {
         res.status(functionReturn.status).json({
             erro: messagestorage.getMessage(functionReturn.msg)
         })
@@ -74,7 +74,7 @@ app.put('/usuarios/:_id', (req, res, next) => {
 
     if (Object.keys(errors).length === 0) {
 
-        staticData[index] = {
+        staticData[functionReturn.index] = {
             _id: req.body._id,
             nome: req.body.nome,
             email: req.body.email,
@@ -96,11 +96,12 @@ app.put('/usuarios/:_id', (req, res, next) => {
 app.patch('/usuarios/:_id', (req, res, next) => {
 
     let functionReturn = Params.checkerId(req)
-    if (functionReturn) {
+    if (functionReturn.status != 0) {
         res.status(functionReturn.status).json({
             erro: messagestorage.getMessage(functionReturn.msg)
         })
     } else {
+        let index = functionReturn.index
 
         if (!req.body.nome) { req.body.nome = staticData[index].nome }
         if (!req.body.email) { req.body.email = staticData[index].email }
