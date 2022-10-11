@@ -20,6 +20,7 @@ export default class Params {
             id.msg = 'notFoundId'
             return id
         }
+        id.index = index
         return id
     }
 }
