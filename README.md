@@ -7,3 +7,7 @@ Prova 1 - Construção API - RESTFul
   Na Nuvem (Heroku).
   Documentação da API.
   Qualquer linguagem.
+
+  Link para a API:
+    https://avaliacao-web-service.herokuapp.com/usuarios
+
