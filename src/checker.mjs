@@ -29,12 +29,13 @@ function attributeChecker(req, userId = -1) {
     };
 
     let index = staticData.findIndex(v => v.email == req.body.email)
+    let x = staticData[index]._id || -1
 
     console.log("index: " + index)
     console.log("userID: " + index)
     console.log("static user id: " + staticData[index]._id)
 
-    if (userId != staticData[index]._id || index > -1) {
+    if (userId != x || index > -1) {
         errors["email"] = (messagestorage.getMessage('emailExist'))
     } else if (!req.body.email) {
         errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
