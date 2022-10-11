@@ -18,25 +18,25 @@ function attributeChecker(req) {
     let telFixoLengthMin = 10;
     let telFixoLengthMax = 11;
 
-    console.log(req.body.nome.Length)
+    console.log(req.body.nome.length)
     console.log(nomeLengthMin)
 
     if (!req.body.nome) {
         errors["nome"] = (messagestorage.getMessage('requiredField', 'nome'))
     } else if (!/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/.test(req.body.nome)) {
         errors["nome"] = (messagestorage.getMessage('onlyLetters', 'nome'))
-    } else if (req.body.nome.Length < nomeLengthMin) {
+    } else if (req.body.nome.length < nomeLengthMin) {
         errors["nome"] = (messagestorage.getMessage('LengthMoreThan', 'nome', nomeLengthMin))
-    } else if (req.body.nome.Length > nomeLengthMax) {
+    } else if (req.body.nome.length > nomeLengthMax) {
         errors["nome"] = (messagestorage.getMessage('LengthLessThan', 'nome', null, nomeLengthMax))
     };
 
     let index = staticData.findIndex(v => v.email == req.body.email)
     if (!req.body.email) {
         errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
-    } else if (req.body.email.Length < emailLengthMin) {
+    } else if (req.body.email.length < emailLengthMin) {
         errors["email"] = (messagestorage.getMessage('LengthMoreThan', 'email', emailLengthMin))
-    } else if (req.body.email.Length > emailLengthMax) {
+    } else if (req.body.email.length > emailLengthMax) {
         errors["email"] = (messagestorage.getMessage('LengthLessThan', 'email', null, emailLengthMax))
     } else if (!EmailValidator.validate(req.body.email)) {
         errors["email"] = (messagestorage.getMessage('invalidEmail', 'email'))
@@ -46,9 +46,9 @@ function attributeChecker(req) {
 
     if (!req.body.senha) {
         errors["senha"] = (messagestorage.getMessage('requiredField', 'senha'))
-    } else if (req.body.senha.Length < senhaLengthMin) {
+    } else if (req.body.senha.length < senhaLengthMin) {
         errors["senha"] = (messagestorage.getMessage('LengthMoreThan', 'senha', senhaLengthMin))
-    } else if (req.body.senha.Length > senhaLengthMax) {
+    } else if (req.body.senha.length > senhaLengthMax) {
         errors["senha"] = (messagestorage.getMessage('LengthLessThan', 'senha', null, senhaLengthMax))
     };
 
@@ -58,9 +58,9 @@ function attributeChecker(req) {
         errors["telefone_fixo"] = (messagestorage.getMessage('onlyNumbers', 'telefone_fixo'))
     } else if (req.body.telefone_fixo < 0) {
         errors["telefone_fixo"] = (messagestorage.getMessage('positiveNumber', 'telefone_fixo'))
-    } else if (req.body.telefone_fixo.Length < telFixoLengthMin) {
+    } else if (req.body.telefone_fixo.length < telFixoLengthMin) {
         errors["telefone_fixo"] = (messagestorage.getMessage('LengthMoreThan', 'telefone_fixo', telFixoLengthMin))
-    } else if (req.body.telefone_fixo.Length > telFixoLengthMax) {
+    } else if (req.body.telefone_fixo.length > telFixoLengthMax) {
         errors["telefone_fixo"] = (messagestorage.getMessage('LengthLessThan', 'telefone_fixo', null, telFixoLengthMax))
     };
 
