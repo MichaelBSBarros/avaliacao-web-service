@@ -77,7 +77,6 @@ app.put('/usuarios/:_id', (req, res, next) => {
 
     if (Object.keys(errors).length === 0) {
 
-        console.log(functionReturn.index)
         staticData[functionReturn.index] = {
             _id: req.body._id,
             nome: req.body.nome,
