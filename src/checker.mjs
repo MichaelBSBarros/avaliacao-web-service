@@ -30,12 +30,6 @@ function attributeChecker(req, userId) {
 
     let index = staticData.findIndex(v => v.email == req.body.email)
 
-    if (index > -1) {
-        if (userId == -1 || userId != staticData[index]._id) {
-            errors["email"] = (messagestorage.getMessage('emailExist'))
-        }
-    }
-
     if (!req.body.email) {
         errors["email"] = (messagestorage.getMessage('requiredField', 'email'))
     } else if (req.body.email.length < emailLengthMin) {
@@ -44,6 +38,10 @@ function attributeChecker(req, userId) {
         errors["email"] = (messagestorage.getMessage('lengthLessThan', 'email', null, emailLengthMax))
     } else if (!EmailValidator.validate(req.body.email)) {
         errors["email"] = (messagestorage.getMessage('invalidEmail', 'email'))
+    } else if (index > -1) {
+        if (userId == -1 || userId != staticData[index]._id) {
+            errors["email"] = (messagestorage.getMessage('emailExist'))
+        }
     };
 
     if (!req.body.senha) {
