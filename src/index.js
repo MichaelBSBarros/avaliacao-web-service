@@ -110,7 +110,7 @@ app.patch('/usuarios/:_id', (req, res, next) => {
         if (!req.body.email) { req.body.email = staticData[index].email }
         if (!req.body.senha) { req.body.senha = staticData[index].senha }
         if (!req.body.telefone_fixo) { req.body.telefone_fixo = staticData[index].telefone_fixo }
-        if (req.body.usuario_ouvidor == "") { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
+        if (req.body.usuario_ouvidor == null) { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
 
         let errors = attributeChecker(req, staticData[index]._id)
 
