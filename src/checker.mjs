@@ -32,7 +32,7 @@ function attributeChecker(req, userId = -1) {
 
     console.log("index: " + index)
     console.log("userID: " + index)
-    console.log("static user id: " + indstaticData[index]._id)
+    console.log("static user id: " + staticData[index]._id)
 
     if (userId != staticData[index]._id || index > -1) {
         errors["email"] = (messagestorage.getMessage('emailExist'))
