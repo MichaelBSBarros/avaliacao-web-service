@@ -21,7 +21,7 @@ app.get('/usuarios/:_id', (req, res) => {
     let _id = req.params._id
 
     let functionReturn = Params.checkerId(req)
-    if (functionReturn) {
+    if (functionReturn.status != 0) {
         res.status(functionReturn.status).json({
             erro: messagestorage.getMessage(functionReturn.msg)
         })
