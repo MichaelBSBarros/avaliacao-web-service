@@ -78,7 +78,7 @@ app.put('/usuarios/:_id', (req, res, next) => {
     if (Object.keys(errors).length === 0) {
 
         staticData[functionReturn.index] = {
-            _id: req.body._id,
+            _id: staticData[functionReturn.index]._id,
             nome: req.body.nome,
             email: req.body.email,
             senha: req.body.senha,
