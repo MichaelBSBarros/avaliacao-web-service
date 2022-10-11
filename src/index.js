@@ -41,8 +41,10 @@ app.post('/usuarios', (req, res) => {
 
     if (Object.keys(errors).length === 0) {
 
+        let tempId = uuid();
+
         staticData.push({
-            _id: uuid(),
+            _id: tempId,
             nome: req.body.nome,
             email: req.body.email,
             senha: req.body.senha,
@@ -52,7 +54,8 @@ app.post('/usuarios', (req, res) => {
 
         res.errors
         res.status(200).json({
-            mensagem: messagestorage.getMessage('postSuccess')
+            mensagem: messagestorage.getMessage('postSuccess'),
+            _id: tempId
         });
         res.end();
         return;
@@ -137,7 +140,7 @@ app.patch('/usuarios/:_id', (req, res, next) => {
 app.delete('/usuarios/:_id', (req, res) => {
 
     let functionReturn = Params.checkerId(req)
-    if (functionReturn) {
+    if (functionReturn.status != 0) {
         res.status(functionReturn.status).json({
             erro: messagestorage.getMessage(functionReturn.msg)
         })
@@ -145,7 +148,7 @@ app.delete('/usuarios/:_id', (req, res) => {
         res.status(200).json({
             mensagem: messagestorage.getMessage('delSuccess')
         });
-        staticData.splice(index)
+        staticData.splice(functionReturn.index)
     }
 });
 
