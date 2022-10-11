@@ -105,8 +105,6 @@ app.patch('/usuarios/:_id', (req, res, next) => {
         })
     } else {
         let index = functionReturn.index
-        console.log(index)
-        console.log(functionReturn.index)
 
         if (!req.body.nome) { req.body.nome = staticData[index].nome }
         if (!req.body.email) { req.body.email = staticData[index].email }
@@ -114,7 +112,7 @@ app.patch('/usuarios/:_id', (req, res, next) => {
         if (!req.body.telefone_fixo) { req.body.telefone_fixo = staticData[index].telefone_fixo }
         if (!req.body.usuario_ouvidor) { req.body.usuario_ouvidor = staticData[index].usuario_ouvidor }
 
-        let errors = attributeChecker(req)
+        let errors = attributeChecker(req, functionReturn.index)
 
         if (Object.keys(errors).length === 0) {
 
